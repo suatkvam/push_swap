@@ -6,7 +6,6 @@ typedef struct s_stack
     int *data;
     int top;
     int capacity;
-    void (*f)(unsigned int, char*);
 }   t_stack; 
 
 void init_stack(t_stack *s_data,int capacity);
