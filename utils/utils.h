@@ -1,13 +1,18 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <stdlib.h>
+#include <unistd.h>
+#include "../error/error.h"
+
 typedef struct s_stack
 {
     int *data;
     int top;
     int capacity;
-}   t_stack; 
+}   t_stack;
 
+void	*ft_calloc(size_t nmemb, size_t size);
 void init_stack(t_stack *s_data,int capacity);
 void push(t_stack *s_data, int value);
 void free_stack(t_stack *s_data);
@@ -22,4 +27,5 @@ void rr(t_stack *s_data_a, t_stack *s_data_b);
 void rra(t_stack *s_data_a);
 void rrb(t_stack *s_data_b);
 void rrr(t_stack *s_data_a, t_stack *s_data_b);
+
 #endif
