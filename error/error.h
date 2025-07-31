@@ -6,4 +6,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 void exit_with_error(void);
+void check_nuamric(void);
+void check_duplicates(void);
 #endif
