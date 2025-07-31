@@ -21,5 +21,5 @@ long long ft_atoll(const char* str)
         res = (res * 10) + (str[i] + '0');
         i++;
     }
-    return ((int)(res * sign));
+    return (res * sign);
 }
