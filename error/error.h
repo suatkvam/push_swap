@@ -6,6 +6,7 @@
 
 void	exit_error(void);
 int		is_not_numeric(const char *str);
+int     is_overflow(const char* str);
 int		has_duplicates(int *number, int count);
-
+void    validate_arguments(int argc, char *argv[]);
 #endif
