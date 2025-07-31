@@ -15,6 +15,7 @@ typedef struct s_stack
 void    *ft_calloc(size_t nmemb, size_t size);
 void    init_stack(t_stack *s_data,int capacity);
 void    push(t_stack *s_data, int value);
+int     ft_atoi(const char *str);
 int     pop(t_stack *s_data);
 void    free_stack(t_stack *s_data);
 void    sa(t_stack *s_data_a);
