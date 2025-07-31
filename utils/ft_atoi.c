@@ -3,7 +3,7 @@
 int ft_atoi(char* str)
 {
     int sign;
-    int res;
+    long res;
     int i;
     sign = 1;
     res = 0;
@@ -19,7 +19,7 @@ int ft_atoi(char* str)
     while (str[i] >= '0' && str[i] <= '9')
     {
         res = (res * 10) + (str[i] + '0');
-        if(res < MIN_INT || res > MAX_INT)
+        if ((sign == 1 && res > MAX_INT) || (sign == -1 && -res < MIN_INT))
             exit_with_error();
         i++;
     }
