@@ -1,4 +1,5 @@
 #include "error.h"
+#include "../utils/utils.h" 
 
 void validate_arguments(int argc, char **argv)
 {
