@@ -1,6 +1,5 @@
 #include "error.h"
-
-long long ft_atoll(const char *str);
+#include "../utils/utils.h"
 
 int is_overflow(const char* str)
 {
