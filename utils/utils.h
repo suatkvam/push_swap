@@ -12,12 +12,26 @@ typedef struct s_stack
 	int		capacity;
 }			t_stack;
 
+typedef struct s_split_data
+{
+	char			**res;
+	int				word_len;
+	int				word_count;
+	int				i;
+	int				j;
+}					t_split_data;
+
 void		*ft_calloc(size_t nmemb, size_t size);
-void		init_stack(t_stack *s_data, int capacity);
-void validate_arguments(int argc, char **argv);
-void		push(t_stack *s_data, int value);
 int			ft_atoi(const char *str);
 long long	ft_atoll(const char *str);
+size_t	ft_strlen(const char *s);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+char	*ft_strchr(const char *s, int c);
+static char	*ft_strdup(const char *s);
+char		*ft_strtrim(char const *s1, char const *set);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+void		init_stack(t_stack *s_data, int capacity);
+void		push(t_stack *s_data, int value);
 int			pop(t_stack *s_data);
 void		free_stack(t_stack *s_data);
 void		sa(t_stack *s_data_a);
