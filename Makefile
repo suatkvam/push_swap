@@ -9,7 +9,7 @@ UTILS_SRC= ft_atoi.c ft_atoll.c ft_calloc.c free_stack.c init_stack.c \
 			pop.c push.c push_a.c push_b.c reverse_rotate_a.c reverse_rotate_b.c \
 			revese_rotate_both.c rotate_a.c rotate_b.c rotate_both.c \
 			swap_a.c swap_b.c simultaneous_swap.c ft_split.c \
-			ft_substr.c	ft_memcpy.c ft_strchr.c ft_strdup.c ft_strlen.c ft_strtrim.c
+			ft_substr.c	ft_memcpy.c ft_strchr.c ft_strdup.c ft_strlen.c ft_strtrim.c ft_strncmp.c
 
 
 
@@ -31,7 +31,7 @@ CFLAG= -Wall -Werror -Wextra
 CFLAG += $(INCLUDE_FLAGS)
 CFLAG += -g
 
-all: $(NAME)
+all: $(NAME) clean
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAG) -o $(NAME) $(OBJ)
