@@ -1,6 +1,5 @@
 #include "error.h"
 
-// kontrol edilecek
 int is_not_numeric(const char *str)
 {
     int i = 0;
