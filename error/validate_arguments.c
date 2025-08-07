@@ -8,7 +8,7 @@ void	validate_arguments(int argc, char **argv)
 	int			count;
 	long long	tmp;
 
-	i = 1;
+	i = 0;
 	count = argc - 1;
 	while (i < argc)
 	{

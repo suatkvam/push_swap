@@ -1,5 +1,6 @@
 #include "error.h"
 #include "../utils/utils.h"
+#include <stdio.h>
 
 int is_overflow(const char *str)
 {
@@ -15,13 +16,12 @@ int is_overflow(const char *str)
         i++;
     }
 
-    int len = ft_strlen(str + i);
-
+    size_t len = ft_strlen(str);
+    len-= i;
     if (len > 10)
         return 1;
     if (len < 10)
         return 0;
-
     if (sign == 1 && ft_strncmp(str + i, limit, 10) > 0)
         return 1;
     if (sign == -1 && ft_strncmp(str + i, limit_neg, 10) > 0)
