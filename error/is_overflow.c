@@ -1,6 +1,5 @@
 #include "error.h"
 #include "../utils/utils.h"
-#include <stdio.h>
 
 int is_overflow(const char *str)
 {
