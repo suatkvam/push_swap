@@ -1,18 +1,20 @@
 NAME= push_swap
 
-INCLUDE_FLAGS = -I./error -I./utils -I./algorithms
+INCLUDE_FLAGS = -I./error -I./utils -I./algorithms -I./libft
+
+LIBFT_DIR = libft
+LIBFT_LIB = $(LIBFT_DIR)/libft.a
+LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
 
 ERROR_SRC= exit_error.c has_duplicate.c is_not_numaric.c is_overflow.c \
 			validate_arguments.c
 
-UTILS_SRC= ft_atoi.c ft_atoll.c ft_calloc.c free_stack.c init_stack.c \
+UTILS_SRC=  ft_atoll.c free_stack.c init_stack.c \
 			pop.c push.c push_a.c push_b.c reverse_rotate_a.c reverse_rotate_b.c \
 			revese_rotate_both.c rotate_a.c rotate_b.c rotate_both.c \
-			swap_a.c swap_b.c simultaneous_swap.c ft_split.c \
-			ft_substr.c	ft_memcpy.c ft_strchr.c ft_strdup.c ft_strlen.c ft_strtrim.c ft_strncmp.c
-
-
-
+			swap_a.c swap_b.c simultaneous_swap.c free_split_args.c \
+			
+			
 
 ALGORITHMS_SRC=	
 
@@ -31,19 +33,26 @@ CFLAG= -Wall -Werror -Wextra
 CFLAG += $(INCLUDE_FLAGS)
 CFLAG += -g
 
-all: $(NAME) clean
+RM= rm -f
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAG) -o $(NAME) $(OBJ)
+all: $(LIBFT_LIB) $(NAME) clean
+
+$(NAME): $(OBJ) $(LIBFT_DIR)
+	$(CC) $(CFLAG) -o $(NAME) $(OBJ) $(LIBFT_FLAGS)
+
+$(LIBFT_LIB):
+	@make -C $(LIBFT_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAG) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	@make -C $(LIBFT_DIR) clean
+	$(RM) $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+	$(RM) $(NAME)
 
 re: fclean all
 
