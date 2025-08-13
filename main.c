@@ -1,48 +1,58 @@
+#include "error.h"
+#include "libft.h"
 #include "utils.h"
-#include "error.h"
-#include "error.h"
-#include "utils.h" // ft_split'in bildirimi burada olmalı
 
-
-// ... (main'in yardımcı fonksiyonları) ...
-
-int main(int argc, char **argv)
+static void	process_args(int count, char **args)
 {
-    t_stack stack_a;
-    t_stack stack_b;
-    char    **args;
-    int     arg_count; // <-- Değişiklik yok
+	int	*numbers;
+	int	i;
 
-    if (argc < 2)
-        return (0);
+	validate_arguments(count, args);
+	numbers = malloc(sizeof(int) * count);
+	if (!numbers)
+		exit_error();
+	i = 0;
+	while (i < count)
+	{
+		numbers[i] = (int)ft_atoll(args[i]);
+		i++;
+	}
+	if (has_duplicates(numbers, count))
+	{
+		free(numbers);
+		exit_error();
+	}
+	free(numbers);
+}
 
-    // Argümanları hazırlama
-    if (argc == 2)
-    {
-        args = ft_split(argv[1], ' ');
-        if (!args) // ft_split malloc hatası verirse
-            exit_error();
+int	main(int argc, char **argv)
+{
+	char	**args;
+	int		count;
 
-        // --- DÜZELTME: arg_count burada hesaplanmalı ---
-        arg_count = 0;
-        while (args[arg_count])
-            arg_count++;
-    }
-    else
-    {
-        // argv + 1'i kullanırken const uyarısını şimdilik göz ardı et
-        // veya explicit cast yap: args = (char **)(argv + 1);
-        args = argv + 1;
-        arg_count = argc - 1;
-    }
-
-    // validate_arguments artık her zaman başlatılmış bir arg_count alacak.
-    validate_arguments(arg_count, args);
-
-    // ... (kodun geri kalanı aynı) ...
-
-    init_stack(&stack_a, arg_count);
-    init_stack(&stack_b, arg_count);
-    
-    // ...
+	if (argc < 2)
+		return (0);
+	if (argc == 2)
+	{
+		args = ft_split(argv[1], ' ');
+		if (!args)
+			exit_error();
+		count = 0;
+		while (args[count])
+			count++;
+		if (count == 0)
+		{
+			free_split_args(args);
+			exit_error();
+		}
+		process_args(count, args);
+		free_split_args(args);
+	}
+	else
+	{
+		args = argv + 1;
+		count = argc - 1;
+		process_args(count, args);
+	}
+	return (0);
 }
