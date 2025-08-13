@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void exit_error(void)
+void	exit_error(void)
 {
-    write(2,"Error\n",6);
-    exit(EXIT_FAILURE);
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
 }
