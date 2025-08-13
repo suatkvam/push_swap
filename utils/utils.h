@@ -1,7 +1,8 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "../error/error.h"
+# include "../libft/libft.h"
+# include "error.h"
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -12,26 +13,8 @@ typedef struct s_stack
 	int		capacity;
 }			t_stack;
 
-typedef struct s_split_data
-{
-	char			**res;
-	int				word_len;
-	int				word_count;
-	int				i;
-	int				j;
-}					t_split_data;
-
-void		*ft_calloc(size_t nmemb, size_t size);
-int			ft_atoi(const char *str);
 long long	ft_atoll(const char *str);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
-size_t		ft_strlen(const char *s);
-void		*ft_memcpy(void *dest, const void *src, size_t n);
-char		*ft_strchr(const char *s, int c);
-char		*ft_strdup(const char *s);
-char		*ft_strtrim(char const *s1, char const *set);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-char 		**ft_split(const char *s, char c);
+void free_split_args(char **args);
 void		init_stack(t_stack *s_data, int capacity);
 void		push(t_stack *s_data, int value);
 int			pop(t_stack *s_data);
