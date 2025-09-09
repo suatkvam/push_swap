@@ -10,7 +10,7 @@ void	validate_arguments(int argc, char **argv)
 
 	i = 0;
 	count = argc - 1;
-	while (i < argc)
+	while (argv[i])
 	{
 		if (is_not_numeric(argv[i]) || is_overflow(argv[i]))
 			exit_error();
