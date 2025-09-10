@@ -15,6 +15,7 @@ typedef struct s_stack
 
 long long	ft_atoll(const char *str);
 void		free_split_args(char **args);
+int			find_position_of_max(t_stack *stack);
 void		init_stack(t_stack *s_data, int capacity);
 void		push(t_stack *s_data, int value);
 int			pop(t_stack *s_data);
