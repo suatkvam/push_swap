@@ -23,7 +23,7 @@ void		free_stack(t_stack *s_data);
 void		sa(t_stack *s_data_a);
 void		sb(t_stack *s_data_b);
 void		ss(t_stack *s_data_a, t_stack *s_data_b);
-void		pa(t_stack *s_data_b, t_stack *s_data_a);
+void		pa(t_stack *s_data_a, t_stack *s_data_b);
 void		pb(t_stack *s_data_a, t_stack *s_data_b);
 void		ra(t_stack *s_data_a);
 void		rb(t_stack *s_data_b);
