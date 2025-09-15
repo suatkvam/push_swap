@@ -11,6 +11,7 @@ typedef struct s_stack
 	int		*data;
 	int		top;
 	int		capacity;
+	int		id;
 }			t_stack;
 
 long long	ft_atoll(const char *str);
