@@ -15,5 +15,7 @@ void	rra(t_stack *s_data_a)
 		i++;
 	}
 	s_data_a->data[s_data_a->top] = last_element;
+	write(1,"rra\n",4);
+
 }
 

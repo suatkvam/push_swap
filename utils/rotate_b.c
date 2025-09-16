@@ -15,4 +15,5 @@ void	rb(t_stack *s_data_b)
 		i--;
 	}
 	s_data_b->data[0] = first_element;
+	write(1,"rb\n",3);
 }

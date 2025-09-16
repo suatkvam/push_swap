@@ -15,4 +15,5 @@ void	rrb(t_stack *s_data_b)
 		i++;
 	}
 	s_data_b->data[s_data_b->top] = last_element;
+	write(1,"rrb\n",4);
 }
