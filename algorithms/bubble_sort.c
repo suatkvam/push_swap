@@ -5,7 +5,9 @@ void	set_id_with_bubble_sort(t_stack *arr, int len)
 {
 	int i;
 	int j;
+	int idx;
 
+	idx = 0;
 	i = 0;
 	while (i < len - 1)
 	{
@@ -14,7 +16,10 @@ void	set_id_with_bubble_sort(t_stack *arr, int len)
 		while (j < len - 1 - i)
 		{
 			if (arr[i] > arr[j])
-				arr[i].id++;
+			{
+				id[idx] = arr[i] = arr[j];
+				idx++;
+			}
 			j++;
 		}
 		i++;
