@@ -2,16 +2,16 @@
 # define UTILS_H
 
 # include "../libft/libft.h"
+# include "algorithms.h"
 # include "error.h"
-# include <stdlib.h>
-# include <unistd.h>
+# include "parser.h"
 
 typedef struct s_stack
 {
 	int		*data;
 	int		top;
 	int		capacity;
-	int		*id; /*karşılaştıma için her elemanı id ile beraber tutmam gerekebilir*/
+	int *id; /*karşılaştıma için her elemanı id ile beraber tutmam gerekebilir*/
 }			t_stack;
 
 long long	ft_atoll(const char *str);

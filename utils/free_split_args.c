@@ -2,7 +2,9 @@
 
 void	free_split_args(char **args)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	if (!args)
 		return ;
 	while (args[i])
