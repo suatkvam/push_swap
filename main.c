@@ -1,84 +1,68 @@
 #include "error.h"
 #include "libft.h"
 #include "utils.h"
+#include <stdio.h>
 
-/* Process command line arguments by validating them and checking for duplicates */
-static void	process_args(int count, char **args)
+/*init fill_stack a*/
+// todo: bu fonksiyon eklenip düzeltilecek
+/* Fill stack a with numbers from argv */
+static void	fill_stack_a(t_stack *stack_a, char **argv)
 {
-	int	*numbers;
-	int	i;
+	int		i;
+	int		split_data_len;
+	char	**split_data;
 
-	/* Validate all arguments for numeric format and overflow */
-	validate_arguments(count, args);
-	/* Allocate memory for storing the integer array */
-	numbers = malloc(sizeof(int) * count);
-	if (!numbers)
-		exit_error();
+	split_data_len = 0;
+	split_data = ft_split(argv[1], ' ');
+	if (!split_data)
+		return ;
+	while (split_data[split_data_len])
+		split_data_len++;
+	init_stack(stack_a, split_data_len);
 	i = 0;
-	/* Convert string arguments to integers */
-	while (i < count)
+	while (split_data[i])
 	{
-		numbers[i] = (int)ft_atoll(args[i]);
+		push(stack_a, (int)ft_atoll(split_data[i]));
 		i++;
 	}
-	/* Check for duplicate values in the array */
-	if (has_duplicates(numbers, count))
-	{
-		free(numbers);
-		exit_error();
-	}
+	free_split_args(split_data);
 }
 
-/*init stack a and fill stack a*/
-/*buna ekleme yapılacak*/
-t_stack init_stack_a_and_fill(char **argc, int len)
+// ! bu fonksiyon silinecek
+void	print_stack(t_stack *s)
 {
-	t_stack stack_a;
-	int i = 0;
-	init_stack(&stack_a,len);
-	while (i <= len)
+	int	i;
+
+	if (s->top < 0)
 	{
-		push(&stack_a,ft_atoi(*argc[i]))
+		printf("stack bos\n");
+		return ;
 	}
-	
-
+	i = s->top;
+	printf("stack(top -> bottom): ");
+	while (i >= 0)
+	{
+		printf("%d ", s->data[i]); // yukarıdan aşağı yazdırır
+		i--;
+	}
+	printf("\n");
 }
-
 /* Main function: entry point of the push_swap program */
 int	main(int argc, char **argv)
 {
+	t_stack	a;
+	t_stack	b;
 	char	**args;
 	int		count;
 
+	args = argv;
+	count = argc - 1;
+	init_stack(&b, argc - 1);
 	/* If no arguments provided, exit normally */
 	if (argc < 2)
-		return (0);
-	/* Handle single string argument (space-separated numbers) */
-	if (argc == 2)
-	{
-		/* Split the single argument by spaces */
-		args = ft_split(argv[1], ' ');
-		if (!args)
-			exit_error();
-		count = 0;
-		/* Count the number of split arguments */
-		while (args[count])
-			count++;
-		/* Check if we have valid arguments */
-		if (count == 0)
-		{
-			free_split_args(args);
-			exit_error();
-		}
-		process_args(count, args);
-		free_split_args(args);
-	}
-	else
-	{
-		/* Handle multiple arguments (each number as separate argument) */
-		args = argv + 1;
-		count = argc - 1;
-		process_args(count, args);
-	}
+		exit(0);
+	check_arguments(argc, argv);
+	fill_stack_a(&a, args);
+	set_id_with_bubble_sort(&a);
 	return (0);
 }

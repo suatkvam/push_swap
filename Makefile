@@ -1,6 +1,6 @@
 NAME= push_swap
 
-INCLUDE_FLAGS = -I./error -I./utils -I./algorithms -I./libft
+INCLUDE_FLAGS = -I./error -I./utils -I./algorithms -I./libft -I./parser
 
 LIBFT_DIR = libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
@@ -15,11 +15,12 @@ UTILS_SRC=  ft_atoll.c free_stack.c init_stack.c \
 			swap_a.c swap_b.c simultaneous_swap.c free_split_args.c \
 			
 			
-
+PARSER_SRC= process_args.c
 ALGORITHMS_SRC=	
 
 SRC=	$(addprefix error/, $(ERROR_SRC))\
 		$(addprefix utils/, $(UTILS_SRC))\
+		$(addprefix parser/, $(PARSER_SRC))\
 		$(addprefix algorithms/, $(ALGORITHMS_SRC))\
 		main.c
 
