@@ -7,6 +7,5 @@ typedef struct s_steps
 	struct s_steps	*next;
 }					t_steps;
 # include "utils.h"
-void				insertion_sort(t_stack *a, t_stack *b, t_steps **steps_list,
-						int count);
+void				set_id_with_bubble_sort(t_stack *stack_a);
 #endif
