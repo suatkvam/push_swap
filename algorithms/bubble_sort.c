@@ -1,27 +1,28 @@
 #include <utils.h>
 
-// index için
-void	set_id_with_bubble_sort(t_stack *arr, int len)
+//elemanları boyutuna göre id ata
+void	set_id_with_bubble_sort(t_stack *stack_a)
 {
 	int i;
 	int j;
+	int len;
 	int idx;
 
-	idx = 0;
 	i = 0;
-	while (i < len - 1)
+	len = stack_a->top+1;
+	while (i < len)
 	{
-        j = 0;
-		arr[i].id = 0;
-		while (j < len - 1 - i)
+		j = 0;
+		idx = 0;
+		while (j < len)
 		{
-			if (arr[i] > arr[j])
+			if (stack_a->data[i] > stack_a->data[j])
 			{
-				id[idx] = arr[i] = arr[j];
 				idx++;
 			}
 			j++;
 		}
+		stack_a->id[i]= idx;
 		i++;
 	}
 }
