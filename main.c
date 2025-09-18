@@ -63,6 +63,6 @@ int	main(int argc, char **argv)
 		exit(0);
 	check_arguments(argc, argv);
 	fill_stack_a(&a, args);
-	set_id_with_bubble_sort(&a);
+	// set_id_with_bubble_sort(&a);
 	return (0);
 }

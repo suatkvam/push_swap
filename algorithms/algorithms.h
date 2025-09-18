@@ -7,5 +7,5 @@ typedef struct s_steps
 	struct s_steps	*next;
 }					t_steps;
 # include "utils.h"
-void				set_id_with_bubble_sort(t_stack *stack_a);
+// void				set_id_with_bubble_sort(t_stack *stack_a);
 #endif
