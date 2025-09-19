@@ -32,7 +32,7 @@ static void	process_args(int count, char **args)
 static void	free_split_and_exit(char ***args) //! ismi değiş sonra
 {
 	free_split_args(*args);
-	exit_error();
+	exit(EXIT_FAILURE);
 }
 
 /* this function check the arguments
