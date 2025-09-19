@@ -13,10 +13,11 @@ UTILS_SRC=  ft_atoll.c free_stack.c init_stack.c \
 			pop.c push.c push_a.c push_b.c reverse_rotate_a.c reverse_rotate_b.c \
 			revese_rotate_both.c rotate_a.c rotate_b.c rotate_both.c \
 			swap_a.c swap_b.c simultaneous_swap.c free_split_args.c \
+			init_id_list.c
 			
 			
 PARSER_SRC= process_args.c
-ALGORITHMS_SRC=	
+ALGORITHMS_SRC= set_rank_by_value.c is_sorted.c
 
 SRC=	$(addprefix error/, $(ERROR_SRC))\
 		$(addprefix utils/, $(UTILS_SRC))\
