@@ -1,28 +1,88 @@
 #include "algorithms.h"
 #include "utils.h"
 
-// elemanları boyutuna göre id ata
-void	set_rank_by_value(t_stack *stack_a, t_id_list *id_list)
+static int	*copy_stack_to_Arry(t_stack *stack_a)
 {
-	int	i;
-	int	j;
 	int	len;
-	int	idx;
+	int	*copy_area;
+	int	i;
 
 	i = 0;
 	len = stack_a->top + 1;
+	copy_area = ft_calloc(sizeof(int) * len, 1);
+	if (!copy_area)
+		return (NULL);
 	while (i < len)
 	{
-		idx = 0;
-		j = 0;
-		while (j < len)
+		copy_area[i] = stack_a->data[i];
+		i++;
+	}
+	return (copy_area);
+}
+
+static void	quick_sort(int *cp_arr, int left, int right)
+{
+	int	pivot;
+	int	i;
+	int	j;
+	int	tmp;
+
+	if (left >= right)
+		return ;
+	pivot = cp_arr[right];
+	i = left;
+	j = left;
+	while (j < right)
+	{
+		if (cp_arr[j] < pivot)
 		{
-			if (stack_a->data[i] > stack_a->data[j])
-				idx++;	
-			j++;
+			tmp = cp_arr[i];
+			cp_arr[i] = cp_arr[j];
+			cp_arr[j] = tmp;
+			i++;
 		}
-		id_list->id[i] = idx;                         // id saklama
-		id_list->data_value[i] = stack_a->data[i]; // id ile değeride alıyor
+		j++;
+	}
+	tmp = cp_arr[i];
+	cp_arr[i] = cp_arr[right];
+	cp_arr[right] = tmp;
+	quick_sort(cp_arr, left, i - 1); // sol ce sağ alt dizileri sıralama
+	quick_sort(cp_arr, i + 1, right);
+}
+// elemanları boyutuna göre id ata
+static int	binary_search(int *cp_arr, int size, int value)
+{
+	int	left;
+	int	right;
+	int	middle;
+
+	left = 0;
+	right = size - 1;
+	while (left <= right)
+	{
+		middle = (left + right) / 2;
+		if (cp_arr[middle] == value)
+			return (middle);
+		else if (cp_arr[middle] < value)
+			left = middle + 1;
+		else
+			right = middle - 1;
+	}
+	return (-1); // bulunamazsa(benzersiz elemanlarda sorun olmaz)
+}
+void	assign_rank(t_stack *stack_a, t_id_list *id_list, int *sorted_arr)
+{
+	int	len;
+	int	i;
+	int	rank;
+
+	len = stack_a->top + 1;
+	i = 0;
+	while (i < len)
+	{
+		rank = binary_search(sorted_arr, len, stack_a->data[i]);
+		id_list->id[i] = rank;
+		id_list->data_value[i] = stack_a->data[i]; // orjinal değeri sakla
 		i++;
 	}
 }
