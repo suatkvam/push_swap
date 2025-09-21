@@ -11,6 +11,58 @@ if min index  chunk start ile end aralında mı diye bak
 arasında ise push b değilse
 kontrol ettin şey chunkta değilse
 
+1️⃣ Chunk Hesaplama Mantığı
+
+Diyelim ki toplam eleman sayısı = list_size
+
+Chunk sayısını senin fonksiyonuna göre hesaplıyoruz (chunk_count(list_size))
+
+Örnek: list_size = 1000, chunk_count = 36
+
+Her chunk’ın boyutu:
+
+chunk_size=list_sizechunk_count
+chunk_size=
+chunk_count
+list_size
+
+1000 eleman ve 36 chunk → yaklaşık 27–28 eleman per chunk
+2️⃣ Elemanın hangi chunk’a ait olduğunu bulma
+
+Her elemanın rank/id değerine bakılır:
+chunk_index = rank / chunk_size;
+if (chunk_index >= chunk_count)
+	chunk_index = chunk_count - 1; // son chunk taşmaları önlemek için
+Örnek: rank = 54, chunk_size = 27 → chunk_index = 2 (3. chunk)
+3️⃣ Stack_a’dan Stack_b’ye push/rotate mantığı
+
+Stack_a’nın başından başlayıp her elemanı kontrol et:
+for each element in stack_a:
+	if element.rank in current_chunk:
+		push_b(element)
+	else:
+		rotate_a()
+current_chunk: işlediğin chunk aralığı
+
+Eleman chunk’a ait değilse rotate ile stack’in sonuna geçir
+
+Chunk tamamlanınca bir sonraki chunk’a geç
+
+Stack_b’de elemanları genellikle büyükten küçüğe veya küçükten büyüğe sıralı saklamak isteyebilirsin:
+
+Sonra push_swap algoritmasının final sorting adımında kolayca stack_a’ya geri alırsın
+
+💡 Özet Mantık
+
+Rank/id hesaplandı (assign_rank)
+
+Chunk sayısı hesaplandı (chunk_count)
+
+Her elemanın rank/id’ye göre chunk’ı belirlendi
+
+Stack_a’dan elemanları chunk sırasına göre push/rotate ile Stack_b’ye taşıyoruz
+
+Chunk tamamlandı → bir sonraki chunk
 */
 static int	sqrt_func(int n)
 {
@@ -33,10 +85,9 @@ static int	log2_func(int n)
 	}
 	return (log_value);
 }
-static int	calculate_chunk_count(int list_size)
+int	calculate_chunk_count(int list_size)
 {
 	int	chunk;
-	int	i;
 
 	if (list_size <= 100)
 	{
