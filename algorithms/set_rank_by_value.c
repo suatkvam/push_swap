@@ -1,7 +1,7 @@
 #include "algorithms.h"
 #include "utils.h"
 
-static int	*copy_stack_to_Arry(t_stack *stack_a)
+int	*copy_stack_to_Arry(t_stack *stack_a)
 {
 	int	len;
 	int	*copy_area;
@@ -20,7 +20,7 @@ static int	*copy_stack_to_Arry(t_stack *stack_a)
 	return (copy_area);
 }
 
-static void	quick_sort(int *cp_arr, int left, int right)
+void	quick_sort(int *cp_arr, int left, int right)
 {
 	int	pivot;
 	int	i;
@@ -50,7 +50,7 @@ static void	quick_sort(int *cp_arr, int left, int right)
 	quick_sort(cp_arr, i + 1, right);
 }
 // elemanları boyutuna göre id ata
-static int	binary_search(int *cp_arr, int size, int value)
+int	binary_search(int *cp_arr, int size, int value)
 {
 	int	left;
 	int	right;
