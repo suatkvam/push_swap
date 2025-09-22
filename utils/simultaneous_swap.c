@@ -1,8 +1,9 @@
 #include "utils.h"
 
-void	ss(t_stack *s_data_a, t_stack *s_data_b)
+void	ss(t_stack *stack_a, t_stack *stack_b, t_id_list *id_list_a,
+		t_id_list *id_list_b)
 {
-	sa(s_data_a);
-	sb(s_data_b);
-	write(1,"ss\n",3);
+	sa(stack_a, id_list_a);
+	sb(stack_b, id_list_b);
+	write(1, "ss\n", 3);
 }

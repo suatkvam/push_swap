@@ -10,18 +10,22 @@ static void	fill_stack_from_single_arg(t_stack *stack_a, t_id_list *id_list_a,
 	int		i;
 	int		split_data_len;
 	char	**split_data;
+	int		value;
 
 	split_data = ft_split(arg, ' ');
 	if (!split_data)
 		exit(EXIT_FAILURE);
-	split_data_len = 0;
-	while (split_data[split_data_len])
-		split_data_len++;
+	for (split_data_len = 0; split_data[split_data_len]; split_data_len++)
+		;
 	init_stack(stack_a, split_data_len);
 	init_id_list(id_list_a, stack_a->capacity);
 	i = 0;
 	while (split_data[i])
-		push(stack_a, (int)ft_atoll(split_data[i++]));
+	{
+		value = (int)ft_atoll(split_data[i]);
+		push(stack_a, id_list_a, value, 0, value);
+		i++;
+	}
 	free_split_args(split_data);
 }
 
@@ -30,12 +34,15 @@ static void	fill_stack_from_args(t_stack *stack_a, t_id_list *id_list_a,
 		char **argv, int argc)
 {
 	int	i;
+	int	value;
 
 	init_stack(stack_a, argc - 1);
 	init_id_list(id_list_a, stack_a->capacity);
-	i = 1;
-	while (i < argc)
-		push(stack_a, (int)ft_atoll(argv[i++]));
+	for (i = 1; i < argc; i++)
+	{
+		value = (int)ft_atoll(argv[i]);
+		push(stack_a, id_list_a, value, 0, value);
+	}
 }
 
 /* Dispatcher */
@@ -53,15 +60,32 @@ int	main(int argc, char **argv)
 {
 	t_stack		a;
 	t_stack		b;
-	t_id_list	stack_id_list;
+	t_id_list	id_list_a;
+	t_id_list	id_list_b;
 	char		**args;
+	int			*copy_arr;
 
 	args = argv;
 	check_arguments(argc, argv);
-	fill_stack_a(&a, &stack_id_list, args, argc);
+	fill_stack_a(&a, &id_list_a, args, argc);
 	init_stack(&b, a.capacity);
-	set_rank_by_value(&a, &stack_id_list);
-	if (!is_sorted(&a, &stack_id_list))
-		printf("büyükten küçüğe doğru sirali");
+	init_id_list(&id_list_b, b.capacity);
+	copy_arr = copy_stack_to_Arry(&a);
+	if (!copy_arr)
+		return (1);
+	quick_sort(copy_arr, 0, a.top);
+	assign_rank(&a, &id_list_a, copy_arr);
+	if (!is_sorted(&a, &id_list_a))
+	{
+		sort_five_and_under(&a, &id_list_a, a.top + 1);
+		printf("büyükten küçüğe doğru sirali islem yapmasi lazim\n");
+	}
+	else
+		printf("sirali zaten");
+	free(copy_arr);
+	free(id_list_a.id);
+	free(id_list_a.data_value);
+	free(id_list_b.id);
+	free(id_list_b.data_value);
 	return (0);
 }

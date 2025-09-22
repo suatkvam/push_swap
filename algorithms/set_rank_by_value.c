@@ -1,5 +1,4 @@
 #include "algorithms.h"
-#include "utils.h"
 
 int	*copy_stack_to_Arry(t_stack *stack_a)
 {
@@ -9,7 +8,7 @@ int	*copy_stack_to_Arry(t_stack *stack_a)
 
 	i = 0;
 	len = stack_a->top + 1;
-	copy_area = ft_calloc(sizeof(int) * len, 1);
+	copy_area = ft_calloc(len, sizeof(int));
 	if (!copy_area)
 		return (NULL);
 	while (i < len)

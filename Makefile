@@ -17,7 +17,7 @@ UTILS_SRC=  ft_atoll.c free_stack.c init_stack.c \
 			
 			
 PARSER_SRC= process_args.c
-ALGORITHMS_SRC= set_rank_by_value.c is_sorted.c
+ALGORITHMS_SRC= chunk.c  chunk_utils.c  is_sorted.c  set_rank_by_value.c  sort.c
 
 SRC=	$(addprefix error/, $(ERROR_SRC))\
 		$(addprefix utils/, $(UTILS_SRC))\
