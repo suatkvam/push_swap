@@ -12,6 +12,5 @@ int		calculate_chunk_count(int list_size);
 int		*copy_stack_to_Arry(t_stack *stack_a);
 void	quick_sort(int *cp_arr, int left, int right);
 int		binary_search(int *cp_arr, int size, int value);
-void	sort_five_and_under(t_stack *stack_a, t_id_list *id_list,
-			int list_size);
+void start_alg(t_stack *stack_a, t_id_list *id_list, int list_size);
 #endif

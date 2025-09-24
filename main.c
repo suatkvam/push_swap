@@ -77,7 +77,7 @@ int	main(int argc, char **argv)
 	assign_rank(&a, &id_list_a, copy_arr);
 	if (!is_sorted(&a, &id_list_a))
 	{
-		sort_five_and_under(&a, &id_list_a, a.top + 1);
+		start_alg(&a, &id_list_a, a.top + 1);
 		printf("büyükten küçüğe doğru sirali islem yapmasi lazim\n");
 	}
 	else
