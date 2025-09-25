@@ -1,10 +1,11 @@
 #include "algorithms.h"
 
+
 int	*copy_stack_to_Arry(t_stack *stack_a)
 {
-	int	len;
-	int	*copy_area;
-	int	i;
+	int len;
+	int *copy_area;
+	int i;
 
 	i = 0;
 	len = stack_a->top + 1;
@@ -19,16 +20,12 @@ int	*copy_stack_to_Arry(t_stack *stack_a)
 	return (copy_area);
 }
 
-void	quick_sort(int *cp_arr, int left, int right)
+static int	partion_loop(int *cp_arr, int left, int right, int pivot)
 {
-	int	pivot;
-	int	i;
-	int	j;
-	int	tmp;
+	int i;
+	int j;
+	int tmp;
 
-	if (left >= right)
-		return ;
-	pivot = cp_arr[right];
 	i = left;
 	j = left;
 	while (j < right)
@@ -42,6 +39,18 @@ void	quick_sort(int *cp_arr, int left, int right)
 		}
 		j++;
 	}
+	return (i);
+}
+void	quick_sort(int *cp_arr, int left, int right)
+{
+	int pivot;
+	int i;
+	int tmp;
+
+	if (left >= right)
+		return ;
+	pivot = cp_arr[right];
+	i = partion_loop(cp_arr, left, right, pivot);
 	tmp = cp_arr[i];
 	cp_arr[i] = cp_arr[right];
 	cp_arr[right] = tmp;
@@ -51,9 +60,9 @@ void	quick_sort(int *cp_arr, int left, int right)
 // elemanları boyutuna göre id ata
 int	binary_search(int *cp_arr, int size, int value)
 {
-	int	left;
-	int	right;
-	int	middle;
+	int left;
+	int right;
+	int middle;
 
 	left = 0;
 	right = size - 1;
@@ -71,9 +80,9 @@ int	binary_search(int *cp_arr, int size, int value)
 }
 void	assign_rank(t_stack *stack_a, t_id_list *id_list, int *sorted_arr)
 {
-	int	len;
-	int	i;
-	int	rank;
+	int len;
+	int i;
+	int rank;
 
 	len = stack_a->top + 1;
 	i = 0;

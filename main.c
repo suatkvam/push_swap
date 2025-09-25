@@ -3,14 +3,15 @@
 #include "utils.h"
 #include <stdio.h>
 
+
 /* argv tek string olarak verildiyse (argc == 2) */
 static void	fill_stack_from_single_arg(t_stack *stack_a, t_id_list *id_list_a,
 		char *arg)
 {
-	int		i;
-	int		split_data_len;
-	char	**split_data;
-	int		value;
+	int i;
+	int split_data_len;
+	char **split_data;
+	int value;
 
 	split_data = ft_split(arg, ' ');
 	if (!split_data)
@@ -19,12 +20,13 @@ static void	fill_stack_from_single_arg(t_stack *stack_a, t_id_list *id_list_a,
 		;
 	init_stack(stack_a, split_data_len);
 	init_id_list(id_list_a, stack_a->capacity);
-	i = 0;
-	while (split_data[i])
+	// Push in reverse so that the first argument becomes the TOP of the stack
+	i = split_data_len - 1;
+	while (i >= 0)
 	{
 		value = (int)ft_atoll(split_data[i]);
 		push(stack_a, id_list_a, value, 0, value);
-		i++;
+		i--;
 	}
 	free_split_args(split_data);
 }
@@ -33,15 +35,17 @@ static void	fill_stack_from_single_arg(t_stack *stack_a, t_id_list *id_list_a,
 static void	fill_stack_from_args(t_stack *stack_a, t_id_list *id_list_a,
 		char **argv, int argc)
 {
-	int	i;
-	int	value;
-
+	int i;
+	int value;
+	// Push in reverse so that argv[1] (first number) ends up at the TOP
+	i = argc - 1;
 	init_stack(stack_a, argc - 1);
 	init_id_list(id_list_a, stack_a->capacity);
-	for (i = 1; i < argc; i++)
+	while (i >= 1)
 	{
 		value = (int)ft_atoll(argv[i]);
 		push(stack_a, id_list_a, value, 0, value);
+		i--;
 	}
 }
 
@@ -54,16 +58,30 @@ static void	fill_stack_a(t_stack *stack_a, t_id_list *id_list_a, char **argv,
 	else
 		fill_stack_from_args(stack_a, id_list_a, argv, argc);
 }
+void	print_stack(t_stack *s_data)
+{
+	if (s_data->top < 0)
+	{
+		fprintf(stderr, "stack bos!\n");
+		return ;
+	}
+	fprintf(stderr, "stack (top -> bottom): ");
+	for (int i = s_data->top; i >= 0; i--)
+	{
+		fprintf(stderr, "%d ", s_data->data[i]);
+	}
+	fprintf(stderr, "\n");
+}
 
 /* Main function: entry point of the push_swap program */
 int	main(int argc, char **argv)
 {
-	t_stack		a;
-	t_stack		b;
-	t_id_list	id_list_a;
-	t_id_list	id_list_b;
-	char		**args;
-	int			*copy_arr;
+	t_stack a;
+	t_stack b;
+	t_id_list id_list_a;
+	t_id_list id_list_b;
+	char **args;
+	int *copy_arr;
 
 	args = argv;
 	check_arguments(argc, argv);
@@ -73,15 +91,40 @@ int	main(int argc, char **argv)
 	copy_arr = copy_stack_to_Arry(&a);
 	if (!copy_arr)
 		return (1);
+	fprintf(stderr, "stack: ");
+	print_stack(&a);
+	fprintf(stderr, "\n");
+	fprintf(stderr, "copy array: ");
+	for (int i = 0; i < a.top + 1; i++)
+	{
+		fprintf(stderr, "%d ", copy_arr[i]);
+	}
 	quick_sort(copy_arr, 0, a.top);
 	assign_rank(&a, &id_list_a, copy_arr);
+	fprintf(stderr, "\n siralanmiş hali: ");
+	for (int j = 0; j < a.top + 1; j++)
+	{
+		fprintf(stderr, "%d: ", copy_arr[j]);
+	}
+	fprintf(stderr, "\n id sirasi: ");
+	for (int k = 0; k < a.top + 1; k++)
+	{
+		fprintf(stderr, "%d ", id_list_a.id[k]);
+	}
+	fprintf(stderr, "\norijinal degerler: ");
+	for (int k = 0; k < a.top + 1; k++)
+		fprintf(stderr, "%d ", id_list_a.data_value[k]);
+	fprintf(stderr, "\n");
 	if (!is_sorted(&a, &id_list_a))
 	{
 		start_alg(&a, &id_list_a, a.top + 1);
-		printf("büyükten küçüğe doğru sirali islem yapmasi lazim\n");
+		//! duruma göre gözatılacak
 	}
 	else
-		printf("sirali zaten");
+		fprintf(stderr, "sirali zaten\n");
+	fprintf(stderr, "islemler bitti zaman stack: ");
+	print_stack(&a);
+	fprintf(stderr, "\n");
 	free(copy_arr);
 	free(id_list_a.id);
 	free(id_list_a.data_value);

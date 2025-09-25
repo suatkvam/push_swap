@@ -1,16 +1,15 @@
 #include "../utils/utils.h"
 #include "error.h"
 
-void	validate_arguments(int argc, char **argv)
+
+void	validate_arguments(int count, char **argv)
 {
-	int			i;
-	int			*temp_numbers;
-	int			count;
-	long long	tmp;
+	int i;
+	int *temp_numbers;
+	long long tmp;
 
 	i = 0;
-	count = argc - 1;
-	while (argv[i])
+	while (i < count)
 	{
 		if (is_not_numeric(argv[i]) || is_overflow(argv[i]))
 			exit_error();
@@ -22,7 +21,7 @@ void	validate_arguments(int argc, char **argv)
 	i = 0;
 	while (i < count)
 	{
-		tmp = ft_atoll(argv[i + 1]);
+		tmp = ft_atoll(argv[i]);
 		temp_numbers[i] = (int)tmp;
 		i++;
 	}

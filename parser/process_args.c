@@ -1,32 +1,12 @@
 #include "utils.h"
 
+
 /* Process command line arguments by validating them and checking for duplicates and argument count */
 
 static void	process_args(int count, char **args)
 {
-	int	*numbers;
-	int	i;
-
-	/* Validate all arguments for numeric format and overflow */
+	// Validate all arguments for numeric format, overflow, and duplicates
 	validate_arguments(count, args);
-	/* Allocate memory for storing the integer array */
-	numbers = malloc(sizeof(int) * count);
-	if (!numbers)
-		exit_error();
-	i = 0;
-	/* Convert string arguments to integers */
-	while (i < count)
-	{
-		numbers[i] = (int)ft_atoll(args[i]);
-		i++;
-	}
-	/* Check for duplicate values in the array */
-	if (has_duplicates(numbers, count))
-	{
-		free(numbers);
-		exit_error();
-	}
-	free(numbers);
 }
 /**/
 static void	free_split_and_exit(char ***args) //! ismi değiş sonra
@@ -39,8 +19,8 @@ static void	free_split_and_exit(char ***args) //! ismi değiş sonra
 and Handle single string arguments (space-separated numbers) */
 void	check_arguments(int argc, char **argv)
 {
-	char	**args;
-	int		count;
+	char **args;
+	int count;
 
 	count = 0;
 	if (argc == 2)

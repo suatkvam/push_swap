@@ -9,7 +9,7 @@ LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
 ERROR_SRC= exit_error.c has_duplicate.c is_not_numaric.c is_overflow.c \
 			validate_arguments.c
 
-UTILS_SRC=  ft_atoll.c free_stack.c init_stack.c \
+UTILS_SRC=  ft_atoll.c free_stack.c init_stack.c free_id_list.c \
 			pop.c push.c push_a.c push_b.c reverse_rotate_a.c reverse_rotate_b.c \
 			revese_rotate_both.c rotate_a.c rotate_b.c rotate_both.c \
 			swap_a.c swap_b.c simultaneous_swap.c free_split_args.c \

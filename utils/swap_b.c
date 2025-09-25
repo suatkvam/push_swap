@@ -12,7 +12,7 @@ void	sb(t_stack *s_data_b, t_id_list *id_list)
 	s_data_b->data[s_data_b->top] = s_data_b->data[s_data_b->top - 1];
 	s_data_b->data[s_data_b->top - 1] = temp;
 	temp_id = id_list->id[s_data_b->top];
-	id_list->id[s_data_b->top] = s_data_b->data[s_data_b->top - 1];
+	id_list->id[s_data_b->top] = id_list->id[s_data_b->top - 1];
 	id_list->id[s_data_b->top - 1] = temp_id;
 	temp_id_val = id_list->data_value[s_data_b->top];
 	id_list->data_value[s_data_b->top] = id_list->data_value[s_data_b->top - 1];
