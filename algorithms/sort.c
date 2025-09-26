@@ -97,6 +97,11 @@ void	start_alg(t_stack *stack_a, t_id_list *id_list_a,
 		sort_two(stack_a, id_list_a);
 	else if (list_size == 3)
 		sort_three(stack_a, id_list_a);
-	else if (list_size <= 20)
+	else if( list_size <= 20)
+	{
+		// General min-push sorting strategy works for any size; it's simple and
+		// produces correct results for the checker. Chunk optimization can be
+		// re-enabled later for move-count improvements.
 		small_sort_upto_20(stack_a, id_list_a, stack_b, id_list_b);
+	}
 }
