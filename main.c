@@ -117,7 +117,7 @@ int	main(int argc, char **argv)
 	fprintf(stderr, "\n");
 	if (!is_sorted(&a, &id_list_a))
 	{
-		start_alg(&a, &id_list_a, a.top + 1);
+		start_alg(&a, &id_list_a, &b, &id_list_b, a.top + 1);
 		//! duruma göre gözatılacak
 	}
 	else
@@ -126,9 +126,9 @@ int	main(int argc, char **argv)
 	print_stack(&a);
 	fprintf(stderr, "\n");
 	free(copy_arr);
-	free(id_list_a.id);
-	free(id_list_a.data_value);
-	free(id_list_b.id);
-	free(id_list_b.data_value);
+	free_id_list(&id_list_a);
+	free_id_list(&id_list_b);
+	free_stack(&a);
+	free_stack(&b);
 	return (0);
 }

@@ -6,7 +6,9 @@
         "unistd.h": "c",
         "features.h": "c",
         "stdc-predef.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "random": "c",
+        "algorithm": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

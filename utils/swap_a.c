@@ -11,6 +11,7 @@ void	sa(t_stack *s_data_a, t_id_list *id_list)
 	temp = s_data_a->data[s_data_a->top];
 	s_data_a->data[s_data_a->top] = s_data_a->data[s_data_a->top - 1];
 	s_data_a->data[s_data_a->top - 1] = temp;
+	
 	temp_id = id_list->id[s_data_a->top];
 	id_list->id[s_data_a->top] = id_list->id[s_data_a->top - 1];
 	id_list->id[s_data_a->top - 1] = temp_id;

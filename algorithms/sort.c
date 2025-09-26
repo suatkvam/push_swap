@@ -9,6 +9,25 @@
 			sa(stack_a, id_list);
 		*/
 // !bu başka fonksiyonla birleşicek
+static void	rotate_a_min_to_top(t_stack *a, t_id_list *ida, int pos)
+{
+	int top;
+	int ra_count;
+	int rra_count;
+
+	if (pos < 0)
+		return;
+	top = a->top;
+	ra_count = top - pos;
+	rra_count = pos + 1;
+	if (ra_count <= rra_count)
+		while (ra_count-- > 0)
+			ra(a, ida);
+	else
+		while (rra_count-- > 0)
+			rra(a, ida);
+}
+
 static void	sort_two(t_stack *stack_a, t_id_list *id_list)
 {
 	// We want ascending order from TOP to BOTTOM
@@ -41,10 +60,43 @@ static void	sort_three(t_stack *stack_a, t_id_list *id_list)
 		rra(stack_a, id_list);
 }
 
-void	start_alg(t_stack *stack_a, t_id_list *id_list, int list_size)
+
+static void small_sort_upto_20(t_stack *a, t_id_list *ida,
+							   t_stack *b, t_id_list *idb)
+{
+	int size;
+
+	size = a->top + 1;
+	// Min-id'leri tepeye kısa yoldan getirip B'ye aktar
+	while (size > 3)
+	{
+		int pos = find_min_id_pos(a, ida);
+		rotate_a_min_to_top(a, ida, pos);
+		pb(a, b, ida, idb);
+		// B'yi kabaca azalan id tut (top daha büyük id olsun)
+		if (b->top >= 1 && idb->id[b->top] < idb->id[b->top - 1])
+			sb(b, idb);
+		size--;
+	}
+	// Kalanı A'da sırala
+	if (size == 3)
+		sort_three(a, ida);
+	else if (size == 2)
+		sort_two(a, ida);
+	// B'yi geri al
+	while (b->top >= 0)
+		pa(a, b, ida, idb);
+}
+
+
+void	start_alg(t_stack *stack_a, t_id_list *id_list_a,
+			   t_stack *stack_b, t_id_list *id_list_b,
+			   int list_size)
 {
 	if (list_size == 2)
-		sort_two(stack_a, id_list);
+		sort_two(stack_a, id_list_a);
 	else if (list_size == 3)
-		sort_three(stack_a, id_list);
+		sort_three(stack_a, id_list_a);
+	else if (list_size <= 20)
+		small_sort_upto_20(stack_a, id_list_a, stack_b, id_list_b);
 }
