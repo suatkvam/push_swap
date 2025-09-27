@@ -72,7 +72,6 @@ void	init_chunk(t_stack *stack_a, t_stack *stack_b, t_id_list *id_list_a,
 	int	chunk_size;
 	int	current_chunk;
 	int	*sorted_copy_array;
-	int	i;
 	int	rank;
 	int	chunk_index;
 
@@ -88,10 +87,11 @@ void	init_chunk(t_stack *stack_a, t_stack *stack_b, t_id_list *id_list_a,
 	free(sorted_copy_array);
 	while (stack_a->top >= 0 && current_chunk < chunk_count)
 	{
-		i = 0;
-		while (i <= stack_a->top)
+		int rotations = 0;
+		int stack_size = stack_a->top + 1;
+		while (rotations < stack_size)
 		{
-			rank = id_list_a->id[i];
+			rank = id_list_a->id[stack_a->top];
 			chunk_index = rank / chunk_size;
 			if (chunk_index >= chunk_count)
 				chunk_index = chunk_count - 1;
@@ -104,8 +104,8 @@ void	init_chunk(t_stack *stack_a, t_stack *stack_b, t_id_list *id_list_a,
 			else
 			{
 				ra(stack_a, id_list_a);
+				rotations++;
 			}
-			i++;
 		}
 		if (all_elements_in_chunk_done(stack_a, id_list_a, current_chunk,
 				chunk_size, chunk_count))
