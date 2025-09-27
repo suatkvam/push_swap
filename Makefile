@@ -59,4 +59,8 @@ fclean: clean
 
 re: fclean all
 
+.PHONY: smoke
+smoke: all
+	@bash scripts/smoke.sh
+
 .PHONY: all clean fclean re
