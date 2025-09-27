@@ -35,6 +35,9 @@ int	find_min_id_pos(t_stack *a, t_id_list *ida);
 void	init_id_list(t_id_list *t_id_data, int capacity);
 long long	ft_atoll(const char *str);
 void	free_split_args(char **args);
+// TODO: max yardımcıları:
+// - find_position_of_max: raw data'ya göre maksimum pozisyonu döndürür
+// - find_max_rank_pos: rank (id) değerine göre maksimum pozisyonu döndürür
 int	find_position_of_max(t_stack *stack);
 int	find_max_rank_pos(t_stack *stack, t_id_list *ids);
 void	init_stack(t_stack *s_data, int capacity);

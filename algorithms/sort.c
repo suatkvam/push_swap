@@ -25,7 +25,7 @@ static void	rotate_a_min_to_top(t_stack *a, t_id_list *ida, int pos)
 	int rra_count;
 
 	if (pos < 0)
-		return;
+		return ;
 	top = a->top;
 	ra_count = top - pos;
 	rra_count = pos + 1;
@@ -69,9 +69,8 @@ static void	sort_three(t_stack *stack_a, t_id_list *id_list)
 		rra(stack_a, id_list);
 }
 
-
-static void small_sort_upto_20(t_stack *a, t_id_list *ida,
-							   t_stack *b, t_id_list *idb)
+static void	small_sort_upto_20(t_stack *a, t_id_list *ida, t_stack *b,
+		t_id_list *idb)
 {
 	int size;
 
@@ -97,26 +96,27 @@ static void small_sort_upto_20(t_stack *a, t_id_list *ida,
 		pa(a, b, ida, idb);
 }
 
-
-void	start_alg(t_stack *stack_a, t_id_list *id_list_a,
-			   t_stack *stack_b, t_id_list *id_list_b,
-			   int list_size)
+void	start_alg(t_stack *stack_a, t_id_list *id_list_a, t_stack *stack_b,
+		t_id_list *id_list_b, int list_size)
 {
 	if (list_size == 2)
 		sort_two(stack_a, id_list_a);
 	else if (list_size == 3)
 		sort_three(stack_a, id_list_a);
-	else if( list_size <= 20)
+	else if (list_size <= 20)
 	{
 		// General min-push sorting strategy works for any size; it's simple and
 		// produces correct results for the checker. Chunk optimization can be
 		// re-enabled later for move-count improvements.
 		small_sort_upto_20(stack_a, id_list_a, stack_b, id_list_b);
 	}
+	else if (list_size > 20 && list_size <= 100)
+	{
+		init_chunk(stack_a, stack_b, id_list_a, id_list_b);
+	}
 	else
 	{
-		// 21+ elemanlar için chunk tabanlı sıralama
-		init_chunk(stack_a, stack_b, id_list_a, id_list_b);
-		// TODO: 100+ elemanlarda radix algoritmasına yönlendir (performans için)
+		radix_sort(stack_a, id_list_a, stack_b, id_list_b);
+		return ;
 	}
 }
