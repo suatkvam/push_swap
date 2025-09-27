@@ -1,3 +1,6 @@
+/*
+** pop: Stack tepesindeki (value,id,data_value) üçlüsünü çıkarır; tepeyi azaltır.
+*/
 #include "utils.h"
 
 void	pop(t_stack *stack, t_id_list *id_list, int *value, int *id,

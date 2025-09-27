@@ -1,3 +1,10 @@
+/*
+** algorithms/is_sorted.c
+** ----------------------
+** Stack’in hedef sırada olup olmadığını rank’lara bakarak kontrol eder.
+** Hedef: TOP -> BOTTOM artan değer; bu da bottom->top ID’lerin sıkı azalan
+** olması demektir.
+*/
 #include "algorithms.h"
 
 int	is_sorted(t_stack *stack_data, t_id_list *id_list_data)

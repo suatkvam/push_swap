@@ -1,3 +1,6 @@
+/*
+** rr: A ve B'yi aynı anda rotate eder; içte sessizce uygular, stdout'a "rr" basar.
+*/
 #include "utils.h"
 
 void rr(t_stack *a, t_stack *b, t_id_list *ida, t_id_list *idb)

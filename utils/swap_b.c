@@ -1,3 +1,6 @@
+/*
+** sb: B yığınının tepedeki iki elemanını takas eder; stdout'a "sb" yazar.
+*/
 #include "utils.h"
 
 void	sb(t_stack *s_data_b, t_id_list *id_list)

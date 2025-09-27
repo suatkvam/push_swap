@@ -1,3 +1,8 @@
+/*
+** utils/utils.h
+** -------------
+** Stack ve ID listesi veri yapıları ile çekirdek operasyonların prototipleri.
+*/
 #ifndef UTILS_H
 # define UTILS_H
 

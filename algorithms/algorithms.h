@@ -1,3 +1,9 @@
+/*
+** algorithms/algorithms.h
+** -----------------------
+** Algoritma katmanının ortak deklarasyonları.
+** - Rank atama, kopyalama, sıralama, kontrol ve dispatcher
+*/
 #ifndef ALGORITHMS_H
 # define ALGORITHMS_H
 # include "utils.h"

@@ -1,3 +1,8 @@
+/*
+** algorithms/chunk_utils.c
+** ------------------------
+** Chunk sayısı hesaplama ve yardımcı matematiksel fonksiyonlar (sqrt/log2).
+*/
 #include "algorithms.h"
 #include "utils.h"
 

@@ -1,3 +1,6 @@
+/*
+** rrr: A ve B'yi aynı anda reverse rotate eder; içte sessiz, stdout'a "rrr" basar.
+*/
 #include "utils.h"
 
 void	rrr(t_stack *a, t_stack *b, t_id_list *ida, t_id_list *idb)

@@ -1,3 +1,9 @@
+/*
+** parser/process_args.c
+** ---------------------
+** Argümanların split edilmesi (tek string ise) ve doğrulama çağrılarının
+** yönetimi. Doğrulama: numeric/overflow/duplicates.
+*/
 #include "utils.h"
 
 

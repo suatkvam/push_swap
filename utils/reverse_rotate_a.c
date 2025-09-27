@@ -1,3 +1,7 @@
+/*
+** rra: A yığınında tabandaki elemanı tepeye taşır (reverse rotate).
+** stdout'a "rra" basar.
+*/
 #include "utils.h"
 
 void	rra(t_stack *s_data_a, t_id_list *id_list)

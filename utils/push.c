@@ -1,3 +1,6 @@
+/*
+** push: Verilen (value,id,data_value) üçlüsünü stack'e push eder (tepeyi artırır).
+*/
 #include "utils.h"
 
 void	push(t_stack *stack, t_id_list *id_list, int value, int id,

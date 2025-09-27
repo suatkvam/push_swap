@@ -1,3 +1,8 @@
+/*
+** error/validate_arguments.c
+** --------------------------
+** Argümanları doğrular: numeric format, 32-bit taşma ve duplicate kontrolü.
+*/
 #include "../utils/utils.h"
 #include "error.h"
 

@@ -1,3 +1,8 @@
+/*
+** utils/push_a.c
+** --------------
+** B’den A’ya push (pa). Operasyon yazımı stdout’a yapılır.
+*/
 #include "utils.h"
 
 void	pa(t_stack *s_data_a, t_stack *s_data_b, t_id_list *id_list_a,

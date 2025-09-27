@@ -1,3 +1,11 @@
+/*
+** push_swap main
+** --------------
+** - Argümanları doğrular (numeric/overflow/duplicate)
+** - Stack A’yı (argv[1] tepe olacak şekilde) doldurur
+** - Rank atar ve sıralı değilse start_alg ile sıralamayı başlatır
+** - Debug çıktıları stderr’e, operasyonlar stdout’a yazılır
+*/
 #include "error.h"
 #include "libft.h"
 #include "utils.h"

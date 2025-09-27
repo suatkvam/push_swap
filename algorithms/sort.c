@@ -1,3 +1,12 @@
+/*
+** algorithms/sort.c
+** ------------------
+** Küçük ölçek sıralama:
+** - sort_two, sort_three
+** - small_sort_upto_20: min-push (selection benzeri) strateji
+** Dispatcher:
+** - start_alg: 2/3 özel; diğerleri geçici olarak small_sort yolunda
+*/
 #include "algorithms.h"
 #include "utils.h"
 
