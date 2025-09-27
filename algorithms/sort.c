@@ -113,4 +113,10 @@ void	start_alg(t_stack *stack_a, t_id_list *id_list_a,
 		// re-enabled later for move-count improvements.
 		small_sort_upto_20(stack_a, id_list_a, stack_b, id_list_b);
 	}
+	else
+	{
+		// 21+ elemanlar için chunk tabanlı sıralama
+		init_chunk(stack_a, stack_b, id_list_a, id_list_b);
+		// TODO: 100+ elemanlarda radix algoritmasına yönlendir (performans için)
+	}
 }

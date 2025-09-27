@@ -11,24 +11,24 @@
 */
 
 
-int	*copy_stack_to_Arry(t_stack *stack_a)
-{
-	int len;
-	int *copy_area;
-	int i;
+		int	*copy_stack_to_Arry(t_stack *stack_a)
+		{
+			int len;
+			int *copy_area;
+			int i;
 
-	i = 0;
-	len = stack_a->top + 1;
-	// Eleman sayısı kadar yer ayır (0'larla doldurulur)
-	copy_area = ft_calloc(len, sizeof(int));
-	if (!copy_area)
-		return (NULL);
-	while (i < len)
-	{
-		// Stack içeriğini aynı indekslerle kopyala
-		copy_area[i] = stack_a->data[i];
-		i++;
-	}
+			i = 0;
+			len = stack_a->top + 1;
+			// Eleman sayısı kadar yer ayır (0'larla doldurulur)
+			copy_area = ft_calloc(len, sizeof(int));
+			if (!copy_area)
+				return (NULL);
+			while (i < len)
+			{
+				// Stack içeriğini aynı indekslerle kopyala
+				copy_area[i] = stack_a->data[i];
+				i++;
+			}
 	return (copy_area);
 }
 

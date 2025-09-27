@@ -36,6 +36,7 @@ void	init_id_list(t_id_list *t_id_data, int capacity);
 long long	ft_atoll(const char *str);
 void	free_split_args(char **args);
 int	find_position_of_max(t_stack *stack);
+int	find_max_rank_pos(t_stack *stack, t_id_list *ids);
 void	init_stack(t_stack *s_data, int capacity);
 void	push(t_stack *s_data, t_id_list *id_list, int value, int id,
 		int data_value);

@@ -29,6 +29,41 @@ int	all_elements_in_chunk_done(t_stack *stack_a, t_id_list *id_list,
 	return (1);
 }
 
+static void rotate_b_after_push(t_stack *b, t_id_list *idb)
+{
+	// Basit bir sıkılaştırma: tepe ve altındaki id düzenini korumaya çalış
+	if (b->top >= 1 && idb->id[b->top] < idb->id[b->top - 1])
+		sb(b, idb);
+	// İsteğe bağlı: en büyükler üstte kalsın diye,
+	// eğer yeni gelen çok küçükse bir rb ile alta it.
+	if (b->top >= 2 && idb->id[b->top] < idb->id[b->top - 2])
+		rb(b, idb);
+	// TODO: B tarafına yerleştirirken uygun pozisyona döndürerek (rb/rrb)
+	// araya sokma stratejisi ekle; böylece push-back'te daha az rotasyon olur.
+}
+
+static void push_back_from_b(t_stack *a, t_id_list *ida,
+							 t_stack *b, t_id_list *idb)
+{
+	// B boşalana kadar: B'deki en büyük rank'ı (id) tepeye getir, sonra pa
+	while (b->top >= 0)
+	{
+		int max_pos = find_max_rank_pos(b, idb);
+		int top = b->top;
+		if (max_pos < 0)
+			break;
+		// rb/rrb seçimli döndürme
+		int rb_count = top - max_pos;
+		int rrb_count = max_pos + 1;
+		if (rb_count <= rrb_count)
+			while (rb_count-- > 0) rb(b, idb);
+		else
+			while (rrb_count-- > 0) rrb(b, idb);
+		pa(a, b, ida, idb);
+		// TODO: A ve B aynı yönde dönecekse rr/rrr ile birleştir ve adım sayısını azalt.
+	}
+}
+
 void	init_chunk(t_stack *stack_a, t_stack *stack_b, t_id_list *id_list_a,
 		t_id_list *id_list_b)
 {
@@ -63,6 +98,7 @@ void	init_chunk(t_stack *stack_a, t_stack *stack_b, t_id_list *id_list_a,
 			if (chunk_index == current_chunk)
 			{
 				pb(stack_a, stack_b, id_list_a, id_list_b);
+				rotate_b_after_push(stack_b, id_list_b);
 				break ;
 			}
 			else
@@ -75,4 +111,6 @@ void	init_chunk(t_stack *stack_a, t_stack *stack_b, t_id_list *id_list_a,
 				chunk_size, chunk_count))
 			current_chunk++;
 	}
+	// B'dekileri geri A'ya it (büyükten küçüğe tepeye getirerek)
+	push_back_from_b(stack_a, id_list_a, stack_b, id_list_b);
 }
