@@ -1,39 +1,7 @@
-// TODO: Radix sort (LSD) implement et ve dispatcher'da 100+ eleman için kullan.
-
-//
-
-/* döngü içinde kendinden sonra gelen en küçük sayıyı döndüren ve
- rank atıyan bir fonksiyon
-(var zaten???) */
-
-// en büyük sayının bit sayısını bulup ana döngü şartı o olacak
-// en sağdan başlıyarak bitleri kontrol edilecek eğer kontrol bit 0 sa b stack atılacak
-// 1 olan en alta kaydırılacak işlem bitince b dekiler geri alınacak
-// bu şekilde devam edilecek
-
-// TODO: Fonksiyon iskeletleri (implement edilecek)
-// - get_max_id: max rank bul (id_list_a->id içindeki en büyük rank)
-// - count_bits: bit sayısı (max_id'yi temsil etmek için gereken bit sayısı)
-// - radix_sort: bit döngüsü (bit=0..bits-1), her turda:
-//     - A'nın tepesinden n elemanı sırayla işle
-//     - (id >> bit) & 1 == 0 ise pb, aksi halde ra
-//     - Tur sonunda B'dekileri pa ile A'ya geri al
-
-// TODO: Geliştirme ve Optimizasyon
-// - Early exit: Turlar arasında is_sorted(a, ida) true ise döngüden çık.
-// - Boş/küçük n: n < 2 için iş yok; 2–3’te mevcut küçük sorter devrede.
-// - Duplicates: Validator zaten engelliyor; rank benzersiz → radix stabil.
-// - Performans: O(n * log2(n)); büyük n için chunk’a göre genelde daha iyi.
-// - (İleri) rr/rrr birleştirme: A ve/veya B aynı yönde dönecekse rotasyonları
-//   birleştirerek adım sayısını azalt.
-
-// TODO: Dispatcher entegrasyonu
-// - 100+ için radix_sort çağır. Şu an >20 chunk’a yönlendiriliyor; 100+’ı
-//   radix’e almak için algorithms/sort.c içindeki start_alg içinde koşul ekle.
 
 #include "algorithms.h"
 #include "utils.h"
-/**/
+
 static int	get_max_id(t_stack *stack_a, t_id_list *id_list_a)
 {
 	int	i;
