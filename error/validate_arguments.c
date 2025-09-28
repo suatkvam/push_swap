@@ -7,11 +7,9 @@
 #include "error.h"
 
 
-void	validate_arguments(int count, char **argv)
+static void	check_format_and_overflow(int count, char **argv)
 {
 	int i;
-	int *temp_numbers;
-	long long tmp;
 
 	i = 0;
 	while (i < count)
@@ -20,6 +18,14 @@ void	validate_arguments(int count, char **argv)
 			exit_error();
 		i++;
 	}
+}
+
+static void	check_duplicates(int count, char **argv)
+{
+	int *temp_numbers;
+	long long tmp;
+	int i;
+
 	temp_numbers = malloc(sizeof(int) * count);
 	if (!temp_numbers)
 		exit_error();
@@ -36,4 +42,10 @@ void	validate_arguments(int count, char **argv)
 		exit_error();
 	}
 	free(temp_numbers);
+}
+
+void	validate_arguments(int count, char **argv)
+{
+	check_format_and_overflow(count, argv);
+	check_duplicates(count, argv);
 }

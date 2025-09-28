@@ -9,7 +9,6 @@
 #include "error.h"
 #include "libft.h"
 #include "utils.h"
-#include <stdio.h>
 
 
 /* argv tek string olarak verildiyse (argc == 2) */
@@ -66,20 +65,6 @@ static void	fill_stack_a(t_stack *stack_a, t_id_list *id_list_a, char **argv,
 	else
 		fill_stack_from_args(stack_a, id_list_a, argv, argc);
 }
-void	print_stack(t_stack *s_data)
-{
-	if (s_data->top < 0)
-	{
-		fprintf(stderr, "stack bos!\n");
-		return ;
-	}
-	fprintf(stderr, "stack (top -> bottom): ");
-	for (int i = s_data->top; i >= 0; i--)
-	{
-		fprintf(stderr, "%d ", s_data->data[i]);
-	}
-	fprintf(stderr, "\n");
-}
 
 /* Main function: entry point of the push_swap program */
 int	main(int argc, char **argv)
@@ -99,41 +84,12 @@ int	main(int argc, char **argv)
 	copy_arr = copy_stack_to_Arry(&a);
 	if (!copy_arr)
 		return (1);
-	fprintf(stderr, "stack: ");
-	print_stack(&a);
-	fprintf(stderr, "\n");
-	fprintf(stderr, "copy array: ");
-	for (int i = 0; i < a.top + 1; i++)
-	{
-		fprintf(stderr, "%d ", copy_arr[i]);
-	}
 	quick_sort(copy_arr, 0, a.top);
 	assign_rank(&a, &id_list_a, copy_arr);
-	fprintf(stderr, "\n siralanmiş hali: ");
-	for (int j = 0; j < a.top + 1; j++)
-	{
-		fprintf(stderr, "%d: ", copy_arr[j]);
-	}
-	fprintf(stderr, "\n id sirasi: ");
-	for (int k = 0; k < a.top + 1; k++)
-	{
-		fprintf(stderr, "%d ", id_list_a.id[k]);
-	}
-	fprintf(stderr, "\norijinal degerler: ");
-	for (int k = 0; k < a.top + 1; k++)
-		fprintf(stderr, "%d ", id_list_a.data_value[k]);
-	fprintf(stderr, "\n");
 	if (!is_sorted(&a, &id_list_a))
-	{
 		start_alg(&a, &id_list_a, &b, &id_list_b, a.top + 1);
-		//! duruma göre gözatılacak
-	}
 	else
-		fprintf(stderr, "sirali zaten\n");
-	fprintf(stderr, "islemler bitti zaman stack: ");
-	print_stack(&a);
-	fprintf(stderr, "\n");
-	free(copy_arr);
+		free(copy_arr);
 	free_id_list(&id_list_a);
 	free_id_list(&id_list_b);
 	free_stack(&a);
