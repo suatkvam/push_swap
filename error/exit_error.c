@@ -1,8 +1,4 @@
-/*
-** error/exit_error.c
-** ------------------
-** Hata durumunda stderr’e "Error" yazıp süreçten çıkar.
-*/
+
 #include "error.h"
 #include <stdlib.h>
 #include <unistd.h>

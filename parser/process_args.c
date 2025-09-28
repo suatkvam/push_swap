@@ -1,28 +1,12 @@
-/*
-** parser/process_args.c
-** ---------------------
-** Argümanların split edilmesi (tek string ise) ve doğrulama çağrılarının
-** yönetimi. Doğrulama: numeric/overflow/duplicates.
-*/
+
 #include "utils.h"
 
-
-/* Process command line arguments by validating them and checking for duplicates and argument count */
-
-static void	process_args(int count, char **args)
-{
-	// Validate all arguments for numeric format, overflow, and duplicates
-	validate_arguments(count, args);
-}
-/**/
 static void	free_split_and_exit(char ***args) //! ismi değiş sonra
 {
 	free_split_args(*args);
 	exit(EXIT_FAILURE);
 }
 
-/* this function check the arguments
-and Handle single string arguments (space-separated numbers) */
 void	check_arguments(int argc, char **argv)
 {
 	char **args;
@@ -39,13 +23,13 @@ void	check_arguments(int argc, char **argv)
 			count++;
 		if (count == 0)
 			free_split_and_exit(&args);
-		process_args(count, args);
+		validate_arguments(count, args);
 		free_split_args(args);
 	}
 	else
 	{
 		args = argv + 1;
 		count = argc - 1;
-		process_args(count, args);
+		validate_arguments(count, args);
 	}
 }

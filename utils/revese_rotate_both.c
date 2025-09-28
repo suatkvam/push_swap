@@ -1,6 +1,4 @@
-/*
-** rrr: A ve B'yi aynı anda reverse rotate eder; içte sessiz, stdout'a "rrr" basar.
-*/
+
 #include "utils.h"
 
 void	rrr(t_stack *a, t_stack *b, t_id_list *ida, t_id_list *idb)
@@ -8,7 +6,6 @@ void	rrr(t_stack *a, t_stack *b, t_id_list *ida, t_id_list *idb)
 	int i;
 	int last, last_id, last_val;
 
-	// reverse rotate a (silent)
 	if (a->top >= 1)
 	{
 		last = a->data[0];
@@ -27,7 +24,6 @@ void	rrr(t_stack *a, t_stack *b, t_id_list *ida, t_id_list *idb)
 		ida->data_value[a->top] = last_val;
 	}
 
-	// reverse rotate b (silent)
 	if (b->top >= 1)
 	{
 		last = b->data[0];

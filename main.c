@@ -1,17 +1,9 @@
-/*
-** push_swap main
-** --------------
-** - Argümanları doğrular (numeric/overflow/duplicate)
-** - Stack A’yı (argv[1] tepe olacak şekilde) doldurur
-** - Rank atar ve sıralı değilse start_alg ile sıralamayı başlatır
-** - Debug çıktıları stderr’e, operasyonlar stdout’a yazılır
-*/
+
 #include "error.h"
 #include "libft.h"
 #include "utils.h"
 
 
-/* argv tek string olarak verildiyse (argc == 2) */
 static void	fill_stack_from_single_arg(t_stack *stack_a, t_id_list *id_list_a,
 		char *arg)
 {
@@ -27,7 +19,6 @@ static void	fill_stack_from_single_arg(t_stack *stack_a, t_id_list *id_list_a,
 		;
 	init_stack(stack_a, split_data_len);
 	init_id_list(id_list_a, stack_a->capacity);
-	// Push in reverse so that the first argument becomes the TOP of the stack
 	i = split_data_len - 1;
 	while (i >= 0)
 	{
@@ -38,13 +29,11 @@ static void	fill_stack_from_single_arg(t_stack *stack_a, t_id_list *id_list_a,
 	free_split_args(split_data);
 }
 
-/* argv çoklu argümanlarla geldiyse (argc > 2) */
 static void	fill_stack_from_args(t_stack *stack_a, t_id_list *id_list_a,
 		char **argv, int argc)
 {
 	int i;
 	int value;
-	// Push in reverse so that argv[1] (first number) ends up at the TOP
 	i = argc - 1;
 	init_stack(stack_a, argc - 1);
 	init_id_list(id_list_a, stack_a->capacity);
@@ -56,7 +45,6 @@ static void	fill_stack_from_args(t_stack *stack_a, t_id_list *id_list_a,
 	}
 }
 
-/* Dispatcher */
 static void	fill_stack_a(t_stack *stack_a, t_id_list *id_list_a, char **argv,
 		int argc)
 {
@@ -66,7 +54,6 @@ static void	fill_stack_a(t_stack *stack_a, t_id_list *id_list_a, char **argv,
 		fill_stack_from_args(stack_a, id_list_a, argv, argc);
 }
 
-/* Main function: entry point of the push_swap program */
 int	main(int argc, char **argv)
 {
 	t_stack a;

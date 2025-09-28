@@ -1,6 +1,5 @@
 #include "utils.h"
 
-// Return the smallest rank (id) present in stack a
 int	find_min_id(t_stack *a, t_id_list *ida)
 {
     int i;
@@ -19,7 +18,6 @@ int	find_min_id(t_stack *a, t_id_list *ida)
     return min_id;
 }
 
-// Return the index (0..top, where 0 is bottom and top is top) of the smallest rank (id)
 int	find_min_id_pos(t_stack *a, t_id_list *ida)
 {
     int i;

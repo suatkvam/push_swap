@@ -1,6 +1,4 @@
-/*
-** ra: A yığınında tepeyi tabana taşır (rotate). stdout'a "ra" basar.
-*/
+
 #include "utils.h"
 
 void	ra(t_stack *stack_a, t_id_list *id_list)

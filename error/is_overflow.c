@@ -1,6 +1,5 @@
 #include "../libft/libft.h"
 #include "error.h"
-#include <stdio.h>
 
 
 static int	parse_sign_and_skip_zeros(const char *str, int *start)

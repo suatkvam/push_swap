@@ -1,7 +1,4 @@
-/*
-** sa: A yığınının tepedeki iki elemanını (data, id, data_value) takas eder.
-** Yazım: "sa" stdout'a basılır.
-*/
+
 #include "utils.h"
 
 void	sa(t_stack *s_data_a, t_id_list *id_list)

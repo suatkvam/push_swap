@@ -1,10 +1,3 @@
-/*
-** algorithms/chunk.c
-** -------------------
-** Chunk tabanlı sıralama için yardımcı akış:
-** - all_elements_in_chunk_done: mevcut chunk bitmiş mi?
-** - init_chunk: chunk sayısı ve boyutu hesaplayıp A’dan B’ye aktarım döngüsü
-*/
 #include "algorithms.h"
 #include "utils.h"
 

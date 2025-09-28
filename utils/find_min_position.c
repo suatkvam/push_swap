@@ -5,7 +5,7 @@ t_min_info	find_min(t_stack *stack)
 	t_min_info	result;
 	int			i;
 
-	if (!stack || stack->top < 0) // boş stack koruması
+	if (!stack || stack->top < 0)
 	{
 		result.value = 0;
 		result.pos = -1;

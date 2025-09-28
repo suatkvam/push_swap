@@ -1,11 +1,5 @@
 #include "utils.h"
 
-/*
-** find_max_rank_pos
-** ------------------
-** id_list->id dizisinde (0=bottom..top=top) en büyük rank'ın (id)
-** indeksini döndürür. Boş ise -1 döner.
-*/
 int find_max_rank_pos(t_stack *stack, t_id_list *ids)
 {
     int i;
