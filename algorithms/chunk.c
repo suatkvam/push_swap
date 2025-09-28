@@ -23,40 +23,108 @@ int	all_elements_in_chunk_done(t_stack *stack_a, t_id_list *id_list,
 	return (1);
 }
 
+static int	find_optimal_position_in_b(t_stack *b, t_id_list *idb, int new_rank)
+{
+	int i;
+	int best_pos = 0;
+
+	if (b->top < 0)
+		return (0);
+	i = 0;
+	while (i <= b->top)
+	{
+		if (idb->id[i] < new_rank && (i == b->top || idb->id[i + 1] > new_rank))
+		{
+			best_pos = i + 1;
+			break ;
+		}
+		i++;
+	}
+	return (best_pos);
+}
+
 static void	rotate_b_after_push(t_stack *b, t_id_list *idb)
 {
-	// Basit bir sıkılaştırma: tepe ve altındaki id düzenini korumaya çalış
-	if (b->top >= 1 && idb->id[b->top] < idb->id[b->top - 1])
-		sb(b, idb);
-	// İsteğe bağlı: en büyükler üstte kalsın diye,
-	// eğer yeni gelen çok küçükse bir rb ile alta it.
-	if (b->top >= 2 && idb->id[b->top] < idb->id[b->top - 2])
+	int current_rank;
+	int optimal_pos;
+	int rotations_needed;
+
+	if (b->top < 1)
+		return ;
+	current_rank = idb->id[b->top];
+	optimal_pos = find_optimal_position_in_b(b, idb, current_rank);
+	if (optimal_pos == b->top)
+		return ;
+	rotations_needed = b->top - optimal_pos;
+	if (rotations_needed > 0 && rotations_needed <= (b->top + 1) / 2)
+		while (rotations_needed-- > 0)
+			rb(b, idb);
+	else if (rotations_needed < 0)
+		while (rotations_needed++ < 0)
+			rrb(b, idb);
+}
+
+static void	calculate_a_rotation_needs(t_stack *a, t_id_list *ida,
+		int *ra_needed, int *rra_needed)
+{
+	*ra_needed = 0;
+	*rra_needed = 0;
+	if (a->top > 0 && ida->id[a->top] > ida->id[0])
+	{
+		*ra_needed = 1;
+		*rra_needed = 0;
+	}
+	else if (a->top > 1 && ida->id[a->top] < ida->id[a->top - 1])
+	{
+		*ra_needed = 0;
+		*rra_needed = 1;
+	}
+}
+
+static void	optimize_rotations_ab(t_stack *a, t_id_list *ida, t_stack *b,
+		t_id_list *idb, int rb_count, int rrb_count)
+{
+	int min_a_rotations = 0;
+	int ra_needed = 0;
+	int rra_needed = 0;
+
+	calculate_a_rotation_needs(a, ida, &ra_needed, &rra_needed);
+	if (rb_count > 0 && ra_needed > 0)
+	{
+		min_a_rotations = (rb_count < ra_needed) ? rb_count : ra_needed;
+		while (min_a_rotations-- > 0)
+			rr(a, b, ida, idb);
+		rb_count -= min_a_rotations;
+	}
+	else if (rrb_count > 0 && rra_needed > 0)
+	{
+		min_a_rotations = (rrb_count < rra_needed) ? rrb_count : rra_needed;
+		while (min_a_rotations-- > 0)
+			rrr(a, b, ida, idb);
+		rrb_count -= min_a_rotations;
+	}
+	while (rb_count-- > 0)
 		rb(b, idb);
-	// TODO: B tarafına yerleştirirken uygun pozisyona döndürerek (rb/rrb)
-	// araya sokma stratejisi ekle; böylece push-back'te daha az rotasyon olur.
+	while (rrb_count-- > 0)
+		rrb(b, idb);
 }
 
 static void	push_back_from_b(t_stack *a, t_id_list *ida, t_stack *b,
 		t_id_list *idb)
 {
-	// B boşalana kadar: B'deki en büyük rank'ı (id) tepeye getir, sonra pa
 	while (b->top >= 0)
 	{
 		int max_pos = find_max_rank_pos(b, idb);
 		int top = b->top;
 		if (max_pos < 0)
 			break ;
-		// rb/rrb seçimli döndürme
 		int rb_count = top - max_pos;
 		int rrb_count = max_pos + 1;
 		if (rb_count <= rrb_count)
-			while (rb_count-- > 0)
-				rb(b, idb);
+			optimize_rotations_ab(a, ida, b, idb, rb_count, 0);
 		else
-			while (rrb_count-- > 0)
-				rrb(b, idb);
+			optimize_rotations_ab(a, ida, b, idb, 0, rrb_count);
 		pa(a, b, ida, idb);
-		// TODO: A ve B aynı yönde dönecekse rr/rrr ile birleştir ve adım sayısını azalt.
 	}
 }
 
