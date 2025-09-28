@@ -1,9 +1,5 @@
 #include "utils.h"
 
-// TODO: Bu fonksiyon data değerine göre maksimumun pozisyonunu döndürür.
-// Rank (id) bazlı maksimum için find_max_rank_pos'u kullan.
-
-
 int	find_position_of_max(t_stack *stack)
 {
 	int i;
