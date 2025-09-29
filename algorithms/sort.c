@@ -2,7 +2,8 @@
 #include "utils.h"
 
 
-static void	rotate_a_min_to_top(t_stack *a, t_id_list *ida, int pos)
+static void	rotate_a_min_to_top(t_stack *stack_a, t_id_list *id_list_a,
+		int pos)
 {
 	int top;
 	int ra_count;
@@ -10,15 +11,15 @@ static void	rotate_a_min_to_top(t_stack *a, t_id_list *ida, int pos)
 
 	if (pos < 0)
 		return ;
-	top = a->top;
+	top = stack_a->top;
 	ra_count = top - pos;
 	rra_count = pos + 1;
 	if (ra_count <= rra_count)
 		while (ra_count-- > 0)
-			ra(a, ida);
+			ra(stack_a, id_list_a);
 	else
 		while (rra_count-- > 0)
-			rra(a, ida);
+			rra(stack_a, id_list_a);
 }
 
 static void	sort_two(t_stack *stack_a, t_id_list *id_list)
@@ -51,27 +52,27 @@ static void	sort_three(t_stack *stack_a, t_id_list *id_list)
 		rra(stack_a, id_list);
 }
 
-static void	small_sort_upto_20(t_stack *a, t_id_list *ida, t_stack *b,
-		t_id_list *idb)
+static void	small_sort_upto_20(t_stack *stack_a, t_id_list *id_list_a, t_stack *stack_b,
+		t_id_list *id_list_b)
 {
 	int size;
 
-	size = a->top + 1;
+	size = stack_a->top + 1;
 	while (size > 3)
 	{
-		int pos = find_min_id_pos(a, ida);
-		rotate_a_min_to_top(a, ida, pos);
-		pb(a, b, ida, idb);
-		if (b->top >= 1 && idb->id[b->top] < idb->id[b->top - 1])
-			sb(b, idb);
+		int pos = find_min_id_pos(stack_a, id_list_a);
+		rotate_a_min_to_top(stack_a, id_list_a, pos);
+		pb(stack_a, stack_b, id_list_a, id_list_b);
+		if (stack_b->top >= 1 && id_list_b->id[stack_b->top] < id_list_b->id[stack_b->top - 1])
+			sb(stack_b, id_list_b);
 		size--;
 	}
 	if (size == 3)
-		sort_three(a, ida);
+		sort_three(stack_a, id_list_a);
 	else if (size == 2)
-		sort_two(a, ida);
-	while (b->top >= 0)
-		pa(a, b, ida, idb);
+		sort_two(stack_a, id_list_a);
+	while (stack_b->top >= 0)
+		pa(stack_a, stack_b, id_list_a, id_list_b);
 }
 
 void	start_alg(t_stack *stack_a, t_id_list *id_list_a, t_stack *stack_b,

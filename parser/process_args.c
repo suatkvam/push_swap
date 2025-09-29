@@ -1,7 +1,8 @@
 
 #include "utils.h"
 
-static void	free_split_and_exit(char ***args) //! ismi değiş sonra
+
+static void	free_split_and_exit(char ***args)
 {
 	free_split_args(*args);
 	exit(EXIT_FAILURE);

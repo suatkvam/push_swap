@@ -54,6 +54,15 @@ static void	fill_stack_a(t_stack *stack_a, t_id_list *id_list_a, char **argv,
 		fill_stack_from_args(stack_a, id_list_a, argv, argc);
 }
 
+static	void free_all(t_id_list id_list_a, t_id_list id_list_b, t_stack stack_a,
+		t_stack stack_b)
+{
+	free_id_list(&id_list_a);
+	free_id_list(&id_list_b);
+	free_stack(&stack_a);
+	free_stack(&stack_b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack a;
@@ -77,9 +86,6 @@ int	main(int argc, char **argv)
 		start_alg(&a, &id_list_a, &b, &id_list_b, a.top + 1);
 	else
 		free(copy_arr);
-	free_id_list(&id_list_a);
-	free_id_list(&id_list_b);
-	free_stack(&a);
-	free_stack(&b);
+	free_all(id_list_a, id_list_b, a, b);
 	return (0);
 }

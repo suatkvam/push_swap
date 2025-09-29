@@ -30,8 +30,8 @@ typedef struct s_min_info
 } t_min_info;
 
 t_min_info	find_min(t_stack *stack_a);
-int	find_min_id(t_stack *a, t_id_list *ida);
-int	find_min_id_pos(t_stack *a, t_id_list *ida);
+int	find_min_id(t_stack *stack_a, t_id_list *id_list_a);
+int	find_min_id_pos(t_stack *stack_a, t_id_list *id_list_a);
 void	init_id_list(t_id_list *t_id_data, int capacity);
 long long	ft_atoll(const char *str);
 void	free_split_args(char **args);
