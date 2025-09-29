@@ -17,9 +17,9 @@ int	find_optimal_position_in_b(t_stack *stack_b, t_id_list *id_list_b,
 int	all_elements_in_chunk_done(t_stack *stack_a, t_id_list *id_list,
 		int current_chunk, int chunk_size, int chunk_count);
 void	rotate_b_after_push(t_stack *stack_b, t_id_list *id_list_b);
-void	calculate_a_rotation_needs(t_stack *a, t_id_list *id_list_a,
+void	calculate_a_rotation_needs(t_stack *stack_a, t_id_list *id_list_a,
 		int *ra_needed, int *rra_needed);
-void	optimize_rotations_ab(t_stack *a, t_id_list *id_list_a, t_stack *b,
+void	optimize_rotations_ab(t_stack *stack_a, t_id_list *id_list_a, t_stack *stack_b,
 		t_id_list *id_list_b, int rb_count, int rrb_count);
 int	is_sorted(t_stack *stack_data, t_id_list *id_list_data);
 int	calculate_chunk_count(int list_size);

@@ -44,21 +44,21 @@ void	pop(t_stack *s_data, t_id_list *id_list, int *value, int *id,
 		int *data_value);
 void	free_stack(t_stack *s_data);
 void	free_id_list(t_id_list *id_list);
-void	sa(t_stack *s_data_a, t_id_list *id_list);
-void	sb(t_stack *s_data_b, t_id_list *id_list);
+void	sa(t_stack *stack_data_a, t_id_list *id_list);
+void	sb(t_stack *stack_data_b, t_id_list *id_list);
 void	ss(t_stack *stack_a, t_stack *stack_b, t_id_list *id_list_a,
 		t_id_list *id_list_b);
-void	pa(t_stack *s_data_a, t_stack *s_data_b, t_id_list *id_list_a,
+void	pa(t_stack *stack_data_a, t_stack *stack_data_b, t_id_list *id_list_a,
 		t_id_list *id_list_b);
-void	pb(t_stack *s_data_a, t_stack *s_data_b, t_id_list *id_list_a,
+void	pb(t_stack *stack_data_a, t_stack *stack_data_b, t_id_list *id_list_a,
 		t_id_list *id_list_b);
-void	ra(t_stack *s_data_a, t_id_list *id_list);
-void	rb(t_stack *s_data_b, t_id_list *id_list);
-void	rr(t_stack *s_data_a, t_stack *s_data_b, t_id_list *id_list_a,
+void	ra(t_stack *stack_data_a, t_id_list *id_list);
+void	rb(t_stack *stack_data_b, t_id_list *id_list);
+void	rr(t_stack *stack_data_a, t_stack *stack_data_b, t_id_list *id_list_a,
 		t_id_list *id_list_b);
-void	rra(t_stack *s_data_a, t_id_list *id_list);
-void	rrb(t_stack *s_data_b, t_id_list *id_list);
-void	rrr(t_stack *s_data_a, t_stack *s_data_b, t_id_list *id_list_a,
+void	rra(t_stack *stack_data_a, t_id_list *id_list);
+void	rrb(t_stack *stack_data_b, t_id_list *id_list);
+void	rrr(t_stack *stack_data_a, t_stack *stack_data_b, t_id_list *id_list_a,
 		t_id_list *id_list_b);
 
 #endif

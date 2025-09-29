@@ -16,7 +16,7 @@ BONUS_SRC = ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c \
 
 OBJECT_FILE= $(SRC:.c=.o)
 
-BONUS_OBJECT_FİLE=$(BONUS_SRC:.c=.o)
+BONUS_OBJECT_FILE=$(BONUS_SRC:.c=.o)
 
 CC= cc
 CFLAGS = -Wall -Wextra -Werror
@@ -30,12 +30,12 @@ all: $(NAME)
 $(NAME): $(OBJECT_FILE)
 	ar -rcs $(NAME) $(OBJECT_FILE)
 
-bonus: $(BONUS_OBJECT_FİLE)
-	ar -rcs $(NAME) $(BONUS_OBJECT_FİLE) 
+bonus: $(BONUS_OBJECT_FILE)
+	ar -rcs $(NAME) $(BONUS_OBJECT_FILE) 
 
 
 clean:
-	rm -f $(OBJECT_FILE) $(BONUS_OBJECT_FİLE)
+	rm -f $(OBJECT_FILE) $(BONUS_OBJECT_FILE)
 
 fclean: clean
 	rm -f $(NAME)

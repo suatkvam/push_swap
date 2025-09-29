@@ -1,39 +1,39 @@
 #include "utils.h"
 
-int	find_min_id(t_stack *a, t_id_list *ida)
+int	find_min_id(t_stack *stack_a, t_id_list *id_list_a)
 {
     int i;
     int min_id;
 
-    if (!a || a->top < 0)
+    if (!stack_a || stack_a->top < 0)
         return -1;
-    min_id = ida->id[0];
+    min_id = id_list_a->id[0];
     i = 1;
-    while (i <= a->top)
+    while (i <= stack_a->top)
     {
-        if (ida->id[i] < min_id)
-            min_id = ida->id[i];
+        if (id_list_a->id[i] < min_id)
+            min_id = id_list_a->id[i];
         i++;
     }
     return min_id;
 }
 
-int	find_min_id_pos(t_stack *a, t_id_list *ida)
+int	find_min_id_pos(t_stack *stack_a, t_id_list *id_list_a)
 {
     int i;
     int min_id;
     int min_pos;
 
-    if (!a || a->top < 0)
+    if (!stack_a || stack_a->top < 0)
         return -1;
-    min_id = ida->id[0];
+    min_id = id_list_a->id[0];
     min_pos = 0;
     i = 1;
-    while (i <= a->top)
+    while (i <= stack_a->top)
     {
-        if (ida->id[i] < min_id)
+        if (id_list_a->id[i] < min_id)
         {
-            min_id = ida->id[i];
+            min_id = id_list_a->id[i];
             min_pos = i;
         }
         i++;

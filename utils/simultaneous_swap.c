@@ -1,7 +1,7 @@
 #include "utils.h"
 
 
-static void	silent_sa(t_stack *s_data_a, t_id_list *id_list)
+static void	quiet_sa(t_stack *s_data_a, t_id_list *id_list)
 {
 	int temp;
 	int temp_id;
@@ -21,7 +21,7 @@ static void	silent_sa(t_stack *s_data_a, t_id_list *id_list)
 	id_list->data_value[s_data_a->top - 1] = temp_id_val;
 }
 
-void	silent_sb(t_stack *s_data_b, t_id_list *id_list)
+void	quiet_sb(t_stack *s_data_b, t_id_list *id_list)
 {
 	int temp;
 	int temp_id;
@@ -43,7 +43,7 @@ void	silent_sb(t_stack *s_data_b, t_id_list *id_list)
 void	ss(t_stack *stack_a, t_stack *stack_b, t_id_list *id_list_a,
 		t_id_list *id_list_b)
 {
-	silent_sa(stack_a, id_list_a);
-	silent_sb(stack_b, id_list_b);
+	quiet_sa(stack_a, id_list_a);
+	quiet_sb(stack_b, id_list_b);
 	write(1, "ss\n", 3);
 }

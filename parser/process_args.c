@@ -2,7 +2,7 @@
 #include "utils.h"
 
 
-static void	free_split_and_exit(char ***args)
+static void	cleanup_and_exit_error(char ***args)
 {
 	free_split_args(*args);
 	exit(EXIT_FAILURE);
@@ -23,7 +23,7 @@ void	check_arguments(int argc, char **argv)
 		while (args[count])
 			count++;
 		if (count == 0)
-			free_split_and_exit(&args);
+			cleanup_and_exit_error(&args);
 		validate_arguments(count, args);
 		free_split_args(args);
 	}
