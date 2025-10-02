@@ -1,19 +1,31 @@
-#include "algorithms.h"
-#include "utils.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   chunk_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akivam <akivam@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/01 15:04:34 by akivam            #+#    #+#             */
+/*   Updated: 2025/10/01 15:04:37 by akivam           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "utils.h"
+#include "algorithms.h"
 
 static int	sqrt_func(int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i * i <= n)
 		i++;
 	return (i - 1);
 }
+
 static int	log2_func(int n)
 {
-	int log_value;
+	int	log_value;
 
 	log_value = 0;
 	while (n > 1)
@@ -23,9 +35,10 @@ static int	log2_func(int n)
 	}
 	return (log_value);
 }
+
 int	calculate_chunk_count(int list_size)
 {
-	int chunk;
+	int	chunk;
 
 	if (list_size <= 100)
 	{

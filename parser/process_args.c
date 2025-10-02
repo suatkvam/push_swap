@@ -1,36 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   process_args.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akivam <akivam@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 16:40:03 by akivam            #+#    #+#             */
+/*   Updated: 2025/09/30 16:40:05 by akivam           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "utils.h"
+#include "parser.h"
+#include "../error/error.h"
 
-
-static void	cleanup_and_exit_error(char ***args)
+static char	*join_all_args(int argc, char **argv)
 {
-	free_split_args(*args);
-	exit(EXIT_FAILURE);
+	char	*result;
+	char	*temp;
+	char	*with_space;
+	int		i;
+
+	result = ft_strdup("");
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (++i < argc)
+	{
+		with_space = ft_strjoin(argv[i], " ");
+		if (!with_space)
+		{
+			free(result);
+			return (NULL);
+		}
+		temp = ft_strjoin(result, with_space);
+		free(result);
+		free(with_space);
+		if (!temp)
+			return (NULL);
+		result = temp;
+	}
+	return (result);
 }
 
-void	check_arguments(int argc, char **argv)
+static char	**combine_and_split_all_args(int argc, char **argv)
 {
-	char **args;
-	int count;
+	char	*joined;
+	char	**result;
+
+	joined = join_all_args(argc, argv);
+	if (!joined)
+		return (NULL);
+	result = ft_split(joined, ' ');
+	free(joined);
+	return (result);
+}
+
+static int	count_args(char **args)
+{
+	int	count;
 
 	count = 0;
-	if (argc == 2)
+	while (args && args[count])
+		count++;
+	return (count);
+}
+
+char	**check_arguments(int argc, char **argv)
+{
+	char	**args;
+	int		total_count;
+
+	if (argc < 2)
+		exit(0);
+	args = combine_and_split_all_args(argc, argv);
+	if (!args)
+		exit(0);
+	total_count = count_args(args);
+	if (validate_arguments(total_count, args))
 	{
-		args = ft_split(argv[1], ' ');
-		if (!args)
-			exit_error();
-		count = 0;
-		while (args[count])
-			count++;
-		if (count == 0)
-			cleanup_and_exit_error(&args);
-		validate_arguments(count, args);
 		free_split_args(args);
+		exit_error();
 	}
-	else
+	if (total_count < 2)
 	{
-		args = argv + 1;
-		count = argc - 1;
-		validate_arguments(count, args);
+		free_split_args(args);
+		exit(0);
 	}
+	return (args);
 }

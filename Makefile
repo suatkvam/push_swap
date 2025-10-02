@@ -17,8 +17,8 @@ UTILS_SRC=  ft_atoll.c free_stack.c init_stack.c free_id_list.c find_min_id.c \
 UTILS_SRC+= find_max_id.c find_max_rank_pos.c
 			
 			
-PARSER_SRC= process_args.c
-ALGORITHMS_SRC= chunk.c  chunk_utils.c  is_sorted.c  set_rank_by_value.c  sort.c radix.c chunk_advanced.c
+PARSER_SRC= process_args.c parse_and_fill.c
+ALGORITHMS_SRC= chunk.c chunk_helpers.c chunk_utils.c is_sorted.c set_rank_by_value.c sort.c sort_utils.c radix.c
 
 SRC=	$(addprefix error/, $(ERROR_SRC))\
 		$(addprefix utils/, $(UTILS_SRC))\
@@ -38,7 +38,7 @@ CFLAG += -g
 
 RM= rm -f
 
-all: $(LIBFT_LIB) $(NAME) clean
+all: $(LIBFT_LIB) $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT_DIR)
 	$(CC) $(CFLAG) -o $(NAME) $(OBJ) $(LIBFT_FLAGS)

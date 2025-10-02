@@ -1,15 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_b.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akivam <akivam@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 17:33:36 by akivam            #+#    #+#             */
+/*   Updated: 2025/09/30 17:33:37 by akivam           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 
 void	rb(t_stack *stack_data_b, t_id_list *id_list)
 {
-	int i, first, first_id, first_val;
+	int	i;
+	int	first;
+	int	first_id;
+	int	first_val;
+
 	if (stack_data_b->top < 1)
 		return ;
-
 	first = stack_data_b->data[stack_data_b->top];
 	first_id = id_list->id[stack_data_b->top];
 	first_val = id_list->data_value[stack_data_b->top];
-
 	i = stack_data_b->top;
 	while (i > 0)
 	{
@@ -18,10 +32,8 @@ void	rb(t_stack *stack_data_b, t_id_list *id_list)
 		id_list->data_value[i] = id_list->data_value[i - 1];
 		i--;
 	}
-
 	stack_data_b->data[0] = first;
 	id_list->id[0] = first_id;
 	id_list->data_value[0] = first_val;
-
 	write(1, "rb\n", 3);
 }

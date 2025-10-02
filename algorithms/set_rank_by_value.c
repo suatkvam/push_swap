@@ -1,15 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_rank_by_value.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akivam <akivam@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/01 14:35:49 by akivam            #+#    #+#             */
+/*   Updated: 2025/10/01 14:35:50 by akivam           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "utils.h"
 #include "algorithms.h"
 
-
-int	*copy_stack_to_Arry(t_stack *stack_a)
+int	*copy_stack_to_arry(t_stack *stack_a)
 {
-	int len;
-	int *copy_area;
-	int i;
+	int	len;
+	int	*copy_area;
+	int	i;
 
 	i = 0;
 	len = stack_a->top + 1;
-
 	copy_area = ft_calloc(len, sizeof(int));
 	if (!copy_area)
 		return (NULL);
@@ -23,9 +34,9 @@ int	*copy_stack_to_Arry(t_stack *stack_a)
 
 static int	partion_loop(int *cp_arr, int left, int right, int pivot)
 {
-	int i;
-	int j;
-	int tmp;
+	int	i;
+	int	j;
+	int	tmp;
 
 	i = left;
 	j = left;
@@ -45,9 +56,9 @@ static int	partion_loop(int *cp_arr, int left, int right, int pivot)
 
 void	quick_sort(int *cp_arr, int left, int right)
 {
-	int pivot;
-	int i;
-	int tmp;
+	int	pivot;
+	int	i;
+	int	tmp;
 
 	if (left >= right)
 		return ;
@@ -56,16 +67,15 @@ void	quick_sort(int *cp_arr, int left, int right)
 	tmp = cp_arr[i];
 	cp_arr[i] = cp_arr[right];
 	cp_arr[right] = tmp;
-
 	quick_sort(cp_arr, left, i - 1);
 	quick_sort(cp_arr, i + 1, right);
 }
 
 int	binary_search(int *cp_arr, int size, int value)
 {
-	int left;
-	int right;
-	int middle;
+	int	left;
+	int	right;
+	int	middle;
 
 	left = 0;
 	right = size - 1;
@@ -84,9 +94,9 @@ int	binary_search(int *cp_arr, int size, int value)
 
 void	assign_rank(t_stack *stack_a, t_id_list *id_list, int *sorted_arr)
 {
-	int len;
-	int i;
-	int rank;
+	int	len;
+	int	i;
+	int	rank;
 
 	len = stack_a->top + 1;
 	i = 0;

@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_max_id.c                                      :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akivam <akivam@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 16:42:10 by akivam            #+#    #+#             */
-/*   Updated: 2025/09/30 16:42:33 by akivam           ###   ########.fr       */
+/*   Created: 2025/10/01 16:45:00 by akivam            #+#    #+#             */
+/*   Updated: 2025/10/01 20:49:44 by akivam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../utils/utils.h"
+#include "algorithms.h"
 
-int	find_position_of_max(t_stack *stack)
+void	prepare_sorting_context(t_push_swap_data *data)
 {
-	int	i;
-	int	max_val;
-	int	max_pos;
-
-	if (!stack || stack->top < 0)
-		return (-1);
-	max_val = stack->data[0];
-	max_pos = 0;
-	i = 1;
-	while (i <= stack->top)
-	{
-		if (stack->data[i] > max_val)
-		{
-			max_val = stack->data[i];
-			max_pos = i;
-		}
-		i++;
-	}
-	return (max_pos);
+	quick_sort(data->copy_arr, 0, data->a.top);
+	assign_rank(&data->a, &data->id_list_a, data->copy_arr);
+	data->ctx.stack_a = &data->a;
+	data->ctx.id_list_a = &data->id_list_a;
+	data->ctx.stack_b = &data->b;
+	data->ctx.id_list_b = &data->id_list_b;
 }

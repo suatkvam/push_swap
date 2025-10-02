@@ -1,15 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_a.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akivam <akivam@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 17:05:03 by akivam            #+#    #+#             */
+/*   Updated: 2025/09/30 17:05:03 by akivam           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 
-void	pa(t_stack *stack_data_a, t_stack *stack_data_b, t_id_list *id_list_a,
-		t_id_list *id_list_b)
+void	pa(t_stack *stack_a, t_stack *stack_b,
+	t_id_list *id_list_a, t_id_list *id_list_b)
 {
-	int	value;
-	int	id;
-	int	val;
+	t_pop_data	data;
 
-	if (stack_data_b->top < 0)
+	if (stack_b->top < 0)
 		return ;
-	pop(stack_data_b, id_list_b, &value, &id, &val);
-	push(stack_data_a, id_list_a, value, id, val);
+	data = pop(stack_b, id_list_b);
+	push(stack_a, id_list_a, data);
 	write(1, "pa\n", 3);
 }
